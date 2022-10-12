@@ -4,7 +4,7 @@ import employeeReducer from "./user/user.reducer";
 
 const store = configureStore({
   reducer: {
-    employee: employeeReducer,
+    allEmployees: employeeReducer,
   },
 });
 

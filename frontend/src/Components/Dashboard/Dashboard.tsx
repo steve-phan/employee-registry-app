@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 
 import { EmployeeAPI } from "../../apis/API";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setAllEmployees } from "../../store/user/user.reducer";
+import { Account } from "../Account/Account";
 
 const fakeUser = {
   userName: "Royal",
@@ -21,12 +22,20 @@ const getAllEmployees = async () => {
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
+  const { isUserLogin } = useAppSelector(
+    (state) => state.allEmployees.currentEmployee
+  );
   const { data, isLoading } = useQuery("getAllEmployees", getAllEmployees);
+
   useEffect(() => {
     if (data) {
       dispatch(setAllEmployees(data?.users));
     }
   }, [data, dispatch]);
+  if (!isUserLogin) {
+    return <Account />;
+  }
+
   return <div>Dashboard</div>;
 };
 
