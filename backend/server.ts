@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
+import cors from "cors";
 
 import { connectMongoDB } from "./src/config/mogodb";
 import userControler from "./src/controllers/user.controller";
@@ -13,10 +14,16 @@ const app = express();
 connectMongoDB();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+
 app.use("/account", userControler);
 
 // Handle error
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   return res.status(500).json({ message: "Something gone wrong", error: err });
 });
 

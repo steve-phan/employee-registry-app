@@ -15,4 +15,15 @@ userRouters.post(
   }
 );
 
+userRouters.post(
+  "/getAll",
+  (req: Request, res: Response, next: NextFunction) => {
+    UserServices.getAllEmployees()
+      .then((users) => {
+        res.status(200).json({ users });
+      })
+      .catch((err) => next(err));
+  }
+);
+
 export default userRouters;

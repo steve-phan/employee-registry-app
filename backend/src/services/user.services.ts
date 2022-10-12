@@ -24,4 +24,9 @@ export class UserServices {
     user.password = bcrypt.hashSync(userInfo.password, 10);
     await user.save();
   }
+
+  static async getAllEmployees() {
+    const allEmployees = await User.find().select("-password");
+    return allEmployees;
+  }
 }
