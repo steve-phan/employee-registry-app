@@ -17,8 +17,13 @@ interface IFetchData {
 const baseURL = `http://localhost:2022/account`;
 
 export class EmployeeAPI {
-  static async getAllEmployees({ userInfo }: IFetchData) {
-    const response = await axios.post(`${baseURL}/getAll`, userInfo);
+  static async getAllEmployees() {
+    const response = await axios.get(`${baseURL}/get-all-employees`);
+    return response.data;
+  }
+
+  static async signUp({ userInfo }: IFetchData) {
+    const response = await axios.post(`${baseURL}/signup`, { userInfo });
     return response.data;
   }
 }

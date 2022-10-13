@@ -17,7 +17,7 @@ const fakeUser = {
 };
 
 const getAllEmployees = async () => {
-  return await EmployeeAPI.getAllEmployees({ userInfo: fakeUser });
+  return await EmployeeAPI.getAllEmployees();
 };
 
 const Dashboard = () => {

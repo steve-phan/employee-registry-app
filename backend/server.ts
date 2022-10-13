@@ -3,7 +3,7 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 
 import { connectMongoDB } from "./src/config/mogodb";
-import userControler from "./src/controllers/user.controller";
+import userRouter from "./src/routes/user.route";
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-app.use("/account", userControler);
+app.use("/account", userRouter);
 
 // Handle error
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
