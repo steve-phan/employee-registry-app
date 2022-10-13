@@ -1,5 +1,6 @@
-import { EmployeeAPI } from "./API";
 import axios from "axios";
+
+import { EmployeeAPI, IUserInfo } from "./API";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -12,6 +13,25 @@ describe("EmployeeAPI", () => {
       });
       const users = await EmployeeAPI.getAllEmployees();
       expect(users.length).toBe(2);
+    });
+  });
+
+  describe("signUp", () => {
+    const mockUserInfo: IUserInfo = {
+      userName: "Teddy",
+      firstName: "VU NAM",
+      lastName: "PHAN",
+      email: "pvn2022@gmail.com",
+      address: "Berliner str 2, 10101",
+      password: "verySecretPass",
+      role: ["EMPLOYEE"],
+    };
+    it("should return a SUCCESS message", async () => {
+      mockedAxios.post.mockResolvedValue({
+        data: { message: "SUCCESS" },
+      });
+      const response = await EmployeeAPI.signUp({ userInfo: mockUserInfo });
+      expect(response.message).toBe("SUCCESS");
     });
   });
 });

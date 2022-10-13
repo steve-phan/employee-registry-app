@@ -1,5 +1,11 @@
 import axios from "axios";
 
+const ROLE = {
+  EMPLOYEE: "EMPLOYEE",
+  MANAGER: "MANAGER",
+} as const;
+
+type TROLE = keyof typeof ROLE;
 export interface IUserInfo {
   userName: string;
   email: string;
@@ -7,7 +13,7 @@ export interface IUserInfo {
   lastName: string;
   firstName: string;
   address: string;
-  role: string[];
+  role: TROLE[];
 }
 
 interface IFetchData {
