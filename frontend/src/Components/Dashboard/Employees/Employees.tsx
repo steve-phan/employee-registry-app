@@ -19,14 +19,15 @@ const Employees = () => {
       dispatch(setAllEmployees(data?.users));
     }
   }, [data, dispatch]);
-
-  const modifiedEmployee = employees.map((employee, index) => {
-    return {
-      ...employee,
-      name: `${employee.firstName} ${employee.lastName}`,
-      key: `${index}_${employee.email}`,
-    };
-  });
+  const modifiedEmployee = [...employees]
+    .sort((a, b) => a.firstName.charCodeAt(0) - b.firstName.charCodeAt(0))
+    .map((employee, index) => {
+      return {
+        ...employee,
+        name: `${employee.firstName} ${employee.lastName}`,
+        key: `${index}_${employee.email}`,
+      };
+    });
 
   if (isLoading) {
     return <Spin />;
@@ -36,7 +37,13 @@ const Employees = () => {
     return <Empty />;
   }
 
-  return <Table columns={columnsEmployee} dataSource={modifiedEmployee} />;
+  return (
+    <Table
+      columns={columnsEmployee}
+      dataSource={modifiedEmployee}
+      pagination={{ defaultCurrent: 1, defaultPageSize: 10 }}
+    />
+  );
 };
 
 export default Employees;
