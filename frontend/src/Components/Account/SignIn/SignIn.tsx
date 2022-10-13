@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { EmployeeAPI, ISignInInfo } from "../../../apis/API";
 import { useAppDispatch } from "../../../store/hooks";
 import { setActiveEmployee } from "../../../store/user/user.reducer";
+import { noWhiteSpace } from "../SignUp/SignUp.helpers";
 
 export const SignIn: React.FC = () => {
   const [signInInfo, setSignInInfo] = useState<ISignInInfo>();
@@ -36,7 +37,12 @@ export const SignIn: React.FC = () => {
     >
       <Form.Item
         name="userName"
-        rules={[{ required: true, message: "Please input your Username!" }]}
+        rules={[
+          { required: true, message: "Please input your Username!" },
+          {
+            ...noWhiteSpace,
+          },
+        ]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}

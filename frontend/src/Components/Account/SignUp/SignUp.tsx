@@ -9,7 +9,12 @@ import {
   setActiveEmployee,
   setAllEmployees,
 } from "../../../store/user/user.reducer";
-import { SignUpBtnText, SignUpType, TSignUpBtn } from "./SignUp.helpers";
+import {
+  noWhiteSpace,
+  SignUpBtnText,
+  SignUpType,
+  TSignUpBtn,
+} from "./SignUp.helpers";
 import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 
 export const SignUp = ({
@@ -61,7 +66,15 @@ export const SignUp = ({
       <Form.Item
         name="userName"
         label="UserName"
-        rules={[{ required: true, message: "Please input your Username!" }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your Username!",
+          },
+          {
+            ...noWhiteSpace,
+          },
+        ]}
       >
         <Input />
       </Form.Item>
