@@ -45,6 +45,8 @@ export class UserServices {
     const user = new User({ ...userInfo, role: [ROLE.EMPLOYEE] });
     user.password = bcrypt.hashSync(userInfo.password, 10);
     await user.save();
+
+    return this.getAllEmployees();
   }
 
   static async getAllEmployees() {

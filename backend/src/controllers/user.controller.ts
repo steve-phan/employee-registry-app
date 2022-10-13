@@ -13,8 +13,8 @@ export class UserControler {
   }
   static async signUp(req: Request, res: Response, next: NextFunction) {
     try {
-      await UserServices.signUp(req.body);
-      res.status(200).json({ message: "SUCCESS" });
+      const users = await UserServices.signUp(req.body);
+      res.status(200).json({ message: "SUCCESS", users });
     } catch (error) {
       next(error);
     }
@@ -27,7 +27,7 @@ export class UserControler {
   ) {
     try {
       const users = await UserServices.getAllEmployees();
-      res.status(200).json({ users });
+      res.status(200).json({ message: "SUCCESS", users });
     } catch (error) {
       next(error);
     }

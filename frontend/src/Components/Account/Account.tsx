@@ -2,8 +2,8 @@ import { UserOutlined, UserAddOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 import React from "react";
 
-import { SignUp } from "./SignUp";
-import { SignIn } from "./SignIn";
+import { SignUp } from "./SignUp/SignUp";
+import { SignIn } from "./SignIn/SignIn";
 
 export const Account: React.FC = () => {
   const accountHeadings = [

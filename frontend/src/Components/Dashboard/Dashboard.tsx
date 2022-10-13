@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
+import { AddEmployee } from "./AddEmployee/AddEmployee";
 import Employees from "./Employees/Employees";
 import SideBar from "./SideBar/SideBar";
 
@@ -10,9 +11,12 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin } = useAppSelector(
-    (state) => state.employee.activeEmployee
-  );
+  const { isUserLogin, openAddEmPloyeeModal } = useAppSelector((state) => {
+    return {
+      isUserLogin: state.employee.activeEmployee.isUserLogin,
+      openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
+    };
+  });
 
   if (!isUserLogin) {
     return <Account />;
@@ -24,6 +28,7 @@ const Dashboard = () => {
         minHeight: "100vh",
       }}
     >
+      {openAddEmPloyeeModal && <AddEmployee open={openAddEmPloyeeModal} />}
       <Sider
         theme="light"
         breakpoint="md"

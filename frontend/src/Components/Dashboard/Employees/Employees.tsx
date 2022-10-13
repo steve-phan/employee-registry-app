@@ -1,4 +1,4 @@
-import { Spin, Table } from "antd";
+import { Empty, Spin, Table } from "antd";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 
@@ -31,6 +31,11 @@ const Employees = () => {
   if (isLoading) {
     return <Spin />;
   }
+
+  if (employees.length === 0) {
+    return <Empty />;
+  }
+
   return <Table columns={columnsEmployee} dataSource={modifiedEmployee} />;
 };
 

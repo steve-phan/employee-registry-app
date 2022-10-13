@@ -3,9 +3,9 @@ import { Button, Checkbox, Form, Input, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, ISignInInfo } from "../../apis/API";
-import { useAppDispatch } from "../../store/hooks";
-import { setActiveEmployee } from "../../store/user/user.reducer";
+import { EmployeeAPI, ISignInInfo } from "../../../apis/API";
+import { useAppDispatch } from "../../../store/hooks";
+import { setActiveEmployee } from "../../../store/user/user.reducer";
 
 export const SignIn: React.FC = () => {
   const [signInInfo, setSignInInfo] = useState<ISignInInfo>();

@@ -1,8 +1,10 @@
-import { Button } from "antd";
+import { Button, Row } from "antd";
+import { LoginOutlined, EditOutlined } from "@ant-design/icons";
 import React from "react";
 
 import { useAppDispatch } from "../../../store/hooks";
 import { setSingOutActiveEmployee } from "../../../store/user/user.reducer";
+import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 import AccountInfo from "./AccountInfo";
 
 const SideBar = () => {
@@ -11,22 +13,35 @@ const SideBar = () => {
     <div
       style={{
         height: "100%",
-        padding: "30px 0",
+        padding: "30px 8px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
       }}
     >
       <AccountInfo />
-      <div>
+      <Row gutter={[0, 12]}>
         <Button
+          block
+          type="primary"
+          icon={<EditOutlined />}
+          onClick={() => {
+            dispatch(toggleAddEmployeeModal(true));
+          }}
+        >
+          Add employee?
+        </Button>
+        <Button
+          block
+          danger
+          icon={<LoginOutlined />}
           onClick={() => {
             dispatch(setSingOutActiveEmployee());
           }}
         >
           Sign out
         </Button>
-      </div>
+      </Row>
     </div>
   );
 };
