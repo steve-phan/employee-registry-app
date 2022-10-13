@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { IUserInfo } from "../../apis/API";
 
-const activeEmployeeDefault = {
+const activeEmployeeDefault: Omit<IActiveEmployee, "password"> = {
   isUserLogin: false,
   userName: "",
   email: "",
@@ -11,6 +11,10 @@ const activeEmployeeDefault = {
   address: "",
   role: ["EMPLOYEE"],
 };
+
+export interface IActiveEmployee extends IUserInfo {
+  isUserLogin: boolean;
+}
 
 const employeeSlice = createSlice({
   name: "employee",

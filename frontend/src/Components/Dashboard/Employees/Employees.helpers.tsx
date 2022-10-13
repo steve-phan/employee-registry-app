@@ -11,6 +11,11 @@ export interface IEmployee {
   role: TROLE[];
 }
 
+export const EmployeeColor = {
+  EMPLOYEE: "geekblue",
+  MANAGER: "volcano",
+} as const;
+
 export const columnsEmployee: ColumnsType<IEmployee> = [
   {
     title: "Name",
@@ -34,12 +39,8 @@ export const columnsEmployee: ColumnsType<IEmployee> = [
     render: (_, { role }) => (
       <>
         {role.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === ROLE.MANAGER) {
-            color = "volcano";
-          }
           return (
-            <Tag color={color} key={tag}>
+            <Tag color={EmployeeColor[tag]} key={tag}>
               {tag.toUpperCase()}
             </Tag>
           );
