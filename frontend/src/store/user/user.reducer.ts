@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const currentEmployeeDefault = {
+const activeEmployeeDefault = {
   isUserLogin: false,
   userName: "",
   email: "",
@@ -12,14 +12,21 @@ const currentEmployeeDefault = {
 
 const employeeSlice = createSlice({
   name: "employee",
-  initialState: { allEmployees: [], currentEmployee: currentEmployeeDefault },
+  initialState: { allEmployees: [], activeEmployee: activeEmployeeDefault },
   reducers: {
     setAllEmployees(state, action) {
       state.allEmployees = action.payload;
     },
+
+    setActiveEmployee(state, action) {
+      state.activeEmployee = {
+        ...action.payload,
+        isUserLogin: true,
+      };
+    },
   },
 });
 
-export const { setAllEmployees } = employeeSlice.actions;
+export const { setAllEmployees, setActiveEmployee } = employeeSlice.actions;
 
 export default employeeSlice.reducer;

@@ -1,40 +1,37 @@
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
+import { Button, Form, Input, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+import { EmployeeAPI, IUserInfo } from "../../apis/API";
+import { useAppDispatch } from "../../store/hooks";
+import { setActiveEmployee } from "../../store/user/user.reducer";
 
 export const SignUp: React.FC = () => {
+  const [userInfo, setUserInfo] = useState<IUserInfo>();
+  const dispatch = useAppDispatch();
+  const { data, error, isLoading } = useQuery(
+    ["signUpEmployee", userInfo],
+    () => {
+      if (userInfo) {
+        return EmployeeAPI.signUp({ userInfo });
+      }
+    }
+  );
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const onFinish = (values: IUserInfo) => {
+    setUserInfo(values);
   };
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      dispatch(setActiveEmployee(userInfo));
+    }
+  }, [data, isLoading, dispatch, userInfo]);
 
   return (
     <Form
-      {...formItemLayout}
-      labelAlign="left"
+      layout="vertical"
       form={form}
       name="register"
       onFinish={onFinish}
@@ -45,7 +42,7 @@ export const SignUp: React.FC = () => {
       scrollToFirstError
     >
       <Form.Item
-        name="username"
+        name="userName"
         label="UserName"
         rules={[{ required: true, message: "Please input your Username!" }]}
       >
@@ -130,10 +127,25 @@ export const SignUp: React.FC = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-          Register
+      <Form.Item>
+        <Button
+          loading={isLoading}
+          type="primary"
+          htmlType="submit"
+          style={{ width: "100%" }}
+        >
+          {!isLoading ? "Register" : "Loading"}
         </Button>
+      </Form.Item>
+      <Form.Item>
+        {/* // eslint-disable-next-line react/jsx-no-undef */}
+        {/* @ts-ignore */}
+        {error && (
+          <Typography.Text type="danger">
+            {/* @ts-ignore */}
+            {error?.response?.data?.error}
+          </Typography.Text>
+        )}
       </Form.Item>
     </Form>
   );

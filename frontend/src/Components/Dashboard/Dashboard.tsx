@@ -23,7 +23,7 @@ const getAllEmployees = async () => {
 const Dashboard = () => {
   const dispatch = useAppDispatch();
   const { isUserLogin } = useAppSelector(
-    (state) => state.allEmployees.currentEmployee
+    (state) => state.employee.activeEmployee
   );
   const { data, isLoading } = useQuery("getAllEmployees", getAllEmployees);
 

@@ -6,17 +6,20 @@ const ROLE = {
 } as const;
 
 type TROLE = keyof typeof ROLE;
-export interface IUserInfo {
+
+export interface ISignInInfo {
   userName: string;
-  email: string;
   password: string;
+}
+
+export interface IUserInfo extends ISignInInfo {
+  email: string;
   lastName: string;
   firstName: string;
   address: string;
   role: TROLE[];
 }
-
-interface IFetchData {
+export interface IFetchData {
   userInfo: IUserInfo;
 }
 
@@ -25,6 +28,11 @@ const baseURL = `http://localhost:2022/account`;
 export class EmployeeAPI {
   static async getAllEmployees() {
     const response = await axios.get(`${baseURL}/get-all-employees`);
+    return response.data;
+  }
+
+  static async signIn({ signInInfo }: { signInInfo: ISignInInfo }) {
+    const response = await axios.post(`${baseURL}/signin`, { signInInfo });
     return response.data;
   }
 

@@ -1,12 +1,32 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
+import { Button, Checkbox, Form, Input, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+
+import { EmployeeAPI, ISignInInfo } from "../../apis/API";
+import { useAppDispatch } from "../../store/hooks";
+import { setActiveEmployee } from "../../store/user/user.reducer";
 
 export const SignIn: React.FC = () => {
+  const [signInInfo, setSignInInfo] = useState<ISignInInfo>();
+  const dispatch = useAppDispatch();
+  const { data, error, isLoading } = useQuery(
+    ["signInEmployee", signInInfo],
+    () => {
+      if (signInInfo) {
+        return EmployeeAPI.signIn({ signInInfo });
+      }
+    }
+  );
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    setSignInInfo(values);
   };
 
+  useEffect(() => {
+    if (!isLoading && data) {
+      dispatch(setActiveEmployee({ ...data.user }));
+    }
+  }, [data, isLoading, dispatch, signInInfo]);
   return (
     <Form
       name="normal_login"
@@ -15,7 +35,7 @@ export const SignIn: React.FC = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="username"
+        name="userName"
         rules={[{ required: true, message: "Please input your Username!" }]}
       >
         <Input
@@ -45,6 +65,7 @@ export const SignIn: React.FC = () => {
 
       <Form.Item>
         <Button
+          loading={isLoading}
           style={{ width: "100%" }}
           type="primary"
           htmlType="submit"
@@ -52,6 +73,16 @@ export const SignIn: React.FC = () => {
         >
           Log in
         </Button>
+      </Form.Item>
+      <Form.Item>
+        {/* // eslint-disable-next-line react/jsx-no-undef */}
+        {/* @ts-ignore */}
+        {error && (
+          <Typography.Text type="danger">
+            {/* @ts-ignore */}
+            {error?.response?.data?.error}
+          </Typography.Text>
+        )}
       </Form.Item>
     </Form>
   );
