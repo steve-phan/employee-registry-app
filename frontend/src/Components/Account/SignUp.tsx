@@ -2,7 +2,7 @@ import { Button, Form, Input, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, IUserInfo } from "../../apis/API";
+import { EmployeeAPI, IUserInfo, ROLE } from "../../apis/API";
 import { useAppDispatch } from "../../store/hooks";
 import { setActiveEmployee } from "../../store/user/user.reducer";
 
@@ -25,7 +25,7 @@ export const SignUp: React.FC = () => {
 
   useEffect(() => {
     if (!isLoading && data) {
-      dispatch(setActiveEmployee(userInfo));
+      dispatch(setActiveEmployee({ ...userInfo, role: [ROLE.EMPLOYEE] }));
     }
   }, [data, isLoading, dispatch, userInfo]);
 

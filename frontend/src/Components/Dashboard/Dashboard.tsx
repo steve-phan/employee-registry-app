@@ -1,42 +1,58 @@
-import React, { useEffect } from "react";
-import { useQuery } from "react-query";
+import { Layout, Typography } from "antd";
+import { useState } from "react";
 
-import { EmployeeAPI } from "../../apis/API";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setAllEmployees } from "../../store/user/user.reducer";
+import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
+import Employees from "./Employees/Employees";
+import SideBar from "./SideBar/SideBar";
 
-const fakeUser = {
-  userName: "Royal",
-  email: "hello@gmail.com",
-  password: "12345",
-  firstName: "Roy",
-  lastName: "Old",
-  address: "Berliner Str 3 10001",
-  role: ["EMPLOYEE"],
-};
-
-const getAllEmployees = async () => {
-  return await EmployeeAPI.getAllEmployees();
-};
+const { Header, Footer, Sider, Content } = Layout;
 
 const Dashboard = () => {
-  const dispatch = useAppDispatch();
+  const [collap, setCollop] = useState(false);
   const { isUserLogin } = useAppSelector(
     (state) => state.employee.activeEmployee
   );
-  const { data, isLoading } = useQuery("getAllEmployees", getAllEmployees);
 
-  useEffect(() => {
-    if (data) {
-      dispatch(setAllEmployees(data?.users));
-    }
-  }, [data, dispatch]);
   if (!isUserLogin) {
     return <Account />;
   }
 
-  return <div>Dashboard</div>;
+  return (
+    <Layout
+      style={{
+        minHeight: "100vh",
+      }}
+    >
+      <Sider
+        theme="light"
+        breakpoint="md"
+        collapsible
+        defaultCollapsed
+        collapsedWidth="30"
+        onCollapse={(col) => {
+          setCollop(col);
+        }}
+      >
+        {!collap && <SideBar />}
+      </Sider>
+      <Layout>
+        <Header
+          style={{
+            background: "white",
+          }}
+        >
+          <Typography.Paragraph strong>
+            Welcome to Amazing gbmh
+          </Typography.Paragraph>
+        </Header>
+        <Content>
+          <Employees />
+        </Content>
+        <Footer>©{new Date().getFullYear()} Amzing gmbh</Footer>
+      </Layout>
+    </Layout>
+  );
 };
 
 export default Dashboard;

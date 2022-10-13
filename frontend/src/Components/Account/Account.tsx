@@ -28,7 +28,6 @@ export const Account: React.FC = () => {
         centered
         tabBarGutter={48}
         size="large"
-        // style={{ marginBottom: 48 }}
         tabBarStyle={{ border: "1px solid #cecece", marginBottom: 36 }}
         items={accountHeadings.map((heading, i) => {
           const id = String(i + 1);

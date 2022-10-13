@@ -42,7 +42,7 @@ export class UserServices {
     if (existUser) {
       throw `UserName: ${userInfo.userName} or Email: ${userInfo.email} is already taken`;
     }
-    const user = new User({ ...userInfo, role: ROLE.EMPLOYEE });
+    const user = new User({ ...userInfo, role: [ROLE.EMPLOYEE] });
     user.password = bcrypt.hashSync(userInfo.password, 10);
     await user.save();
   }
