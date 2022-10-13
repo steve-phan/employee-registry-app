@@ -3,6 +3,14 @@ import express, { Request, Response, NextFunction } from "express";
 import { UserServices } from "../services/user.services";
 
 export class UserControler {
+  static async signIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = await UserServices.signIn(req.body);
+      res.status(200).json({ user, message: "SUCCESS" });
+    } catch (error) {
+      next(error);
+    }
+  }
   static async signUp(req: Request, res: Response, next: NextFunction) {
     try {
       await UserServices.signUp(req.body);
