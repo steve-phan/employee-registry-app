@@ -28,20 +28,24 @@ export const columnsEmployee: ColumnsType<IEmployee> = [
     title: "Name",
     dataIndex: "name",
     key: "name",
+    ellipsis: true,
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
+    ellipsis: true,
   },
   {
     title: "Address",
     dataIndex: "address",
     key: "address",
+    ellipsis: true,
   },
   {
     title: "Role",
     key: "role",
+    ellipsis: true,
     dataIndex: "role",
     render: (_, { role }) => (
       <>

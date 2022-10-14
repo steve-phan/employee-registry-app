@@ -7,6 +7,7 @@ import { AddEmployee } from "./AddEmployee/AddEmployee";
 import Employees from "./Employees/Employees";
 import SideBar from "./SideBar/SideBar";
 import { UploadCSVFileEmployee } from "./UploadCSVFileEmployee/UploadCSVFileEmployee";
+import { sliderStyles } from "./Dashboard.styles";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -37,13 +38,14 @@ const Dashboard = () => {
         <UploadCSVFileEmployee open={openUploadCSVFileEmployee} />
       )}
       <Sider
-        theme="light"
-        breakpoint="md"
+        breakpoint="sm"
         collapsible
-        defaultCollapsed
         collapsedWidth="30"
         onCollapse={(col) => {
           setCollop(col);
+        }}
+        style={{
+          ...sliderStyles,
         }}
       >
         {!collap && <SideBar />}
