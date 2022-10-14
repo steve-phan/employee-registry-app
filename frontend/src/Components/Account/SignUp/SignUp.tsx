@@ -51,7 +51,7 @@ export const SignUp = ({
       dispatch(toggleAddEmployeeModal(false));
     }
   }, [data, isLoading]);
-  console.log({ data });
+
   return (
     <Form
       layout="vertical"

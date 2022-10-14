@@ -41,11 +41,16 @@ export class UserServices {
     user.password = bcrypt.hashSync(userInfo.password, 10);
     await user.save();
 
-    return this.getAllEmployees();
+    return await this.getAllEmployees();
   }
   static async deleteEmployee({ email }: { email: string }) {
     await User.deleteOne({ email });
-    return this.getAllEmployees();
+    return await this.getAllEmployees();
+  }
+
+  static async editEmployee({ userInfo }: { userInfo: IUserInfo }) {
+    await User.findOneAndUpdate({ email: userInfo.email }, userInfo);
+    return await this.getAllEmployees();
   }
 
   static async getAllEmployees() {

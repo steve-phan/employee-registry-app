@@ -47,6 +47,13 @@ export class EmployeeAPI {
     return response.data;
   }
 
+  static async editEmployee({ userInfo }: IFetchData) {
+    const response = await axios.post(`${baseURL}/account/edit-employee`, {
+      userInfo,
+    });
+    return response.data;
+  }
+
   static async uploadCSVEmployeeFile({ formData }: { formData: FormData }) {
     const response = await axios.post(
       `${baseURL}/upload/employeefile`,
