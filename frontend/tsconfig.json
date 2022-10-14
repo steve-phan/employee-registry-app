@@ -14,7 +14,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@erp/*": ["src/*"]
+    }
   },
-  "include": ["src", "babel.config.js"]
+  "include": ["src", "babel.config.js"],
+  "exclude": ["node_modules"]
 }

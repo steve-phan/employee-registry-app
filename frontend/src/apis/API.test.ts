@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ROLE } from "../Components/Dashboard/Employees/Employees.helpers";
+
+import { ROLE } from "@erp/Components/Dashboard/Employees/Employees.helpers";
 
 import { EmployeeAPI, IUserInfo } from "./API";
 
