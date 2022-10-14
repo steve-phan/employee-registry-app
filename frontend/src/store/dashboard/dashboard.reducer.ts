@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { IUserInfo } from "../../apis/API";
+
 const dashboardSlice = createSlice({
   name: "dashboard",
   initialState: {
@@ -9,7 +11,7 @@ const dashboardSlice = createSlice({
       DELETE_EMPLOYEE: false,
       EDIT_EMPLOYEE: false,
     },
-    currentInActionEmployee: undefined,
+    currentInActionEmployee: undefined as unknown as IUserInfo,
   },
   reducers: {
     toggleAddEmployeeModal(state, action) {

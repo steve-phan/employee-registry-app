@@ -7,5 +7,6 @@ const userRouter = express.Router();
 userRouter.get("/get-all-employees", UserControler.getAllEmployees);
 userRouter.post("/signin", UserControler.signIn);
 userRouter.post("/signup", UserControler.signUp);
+userRouter.post("/delete-employee", UserControler.deleteEmployee);
 
 export default userRouter;

@@ -43,6 +43,10 @@ export class UserServices {
 
     return this.getAllEmployees();
   }
+  static async deleteEmployee({ email }: { email: string }) {
+    await User.deleteOne({ email });
+    return this.getAllEmployees();
+  }
 
   static async getAllEmployees() {
     const allEmployees = await User.find().select("-password");

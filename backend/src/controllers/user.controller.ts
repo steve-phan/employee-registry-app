@@ -20,6 +20,15 @@ export class UserControler {
     }
   }
 
+  static async deleteEmployee(req: Request, res: Response, next: NextFunction) {
+    try {
+      const users = await UserServices.deleteEmployee(req.body);
+      res.status(200).json({ message: "SUCCESS", users });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getAllEmployees(
     req: Request,
     res: Response,

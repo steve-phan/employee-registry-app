@@ -40,6 +40,13 @@ export class EmployeeAPI {
     return response.data;
   }
 
+  static async deleteEmployee({ email }: { email: string }) {
+    const response = await axios.post(`${baseURL}/account/delete-employee`, {
+      email,
+    });
+    return response.data;
+  }
+
   static async uploadCSVEmployeeFile({ formData }: { formData: FormData }) {
     const response = await axios.post(
       `${baseURL}/upload/employeefile`,
