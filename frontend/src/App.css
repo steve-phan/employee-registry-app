@@ -46,6 +46,6 @@
     transform: rotate(360deg);
   }
 }
-.add-employee__modal .ant-modal-body {
+.dashboard-modal .ant-modal-body {
   padding-bottom: 0;
 }

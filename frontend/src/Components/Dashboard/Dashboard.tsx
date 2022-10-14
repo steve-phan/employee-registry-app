@@ -6,17 +6,21 @@ import { Account } from "../Account/Account";
 import { AddEmployee } from "./AddEmployee/AddEmployee";
 import Employees from "./Employees/Employees";
 import SideBar from "./SideBar/SideBar";
+import { UploadCSVFileEmployee } from "./UploadCSVFileEmployee/UploadCSVFileEmployee";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin, openAddEmPloyeeModal } = useAppSelector((state) => {
-    return {
-      isUserLogin: state.employee.activeEmployee.isUserLogin,
-      openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
-    };
-  });
+  const { isUserLogin, openAddEmPloyeeModal, openUploadCSVFileEmployee } =
+    useAppSelector((state) => {
+      return {
+        isUserLogin: state.employee.activeEmployee.isUserLogin,
+        openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
+        openUploadCSVFileEmployee:
+          state.dashboard.openModal.UPLOAD_CSV_FILE_EMPLOYEE,
+      };
+    });
 
   if (!isUserLogin) {
     return <Account />;
@@ -29,6 +33,9 @@ const Dashboard = () => {
       }}
     >
       {openAddEmPloyeeModal && <AddEmployee open={openAddEmPloyeeModal} />}
+      {openUploadCSVFileEmployee && (
+        <UploadCSVFileEmployee open={openUploadCSVFileEmployee} />
+      )}
       <Sider
         theme="light"
         breakpoint="md"
