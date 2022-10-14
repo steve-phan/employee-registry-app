@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
 import { sliderStyles } from "./Dashboard.styles";
-import DashBoardModalGroup from "./DashBoardModalGroup/DashBoardModalGroup";
+import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
 import Employees from "./Employees/Employees";
 import SideBar from "./SideBar/SideBar";
 

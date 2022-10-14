@@ -5,7 +5,7 @@ import { DeleteEmployee } from "../DeleteEmployee/DeleteEmployee";
 import { EditEmployee } from "../EditEmployee/EditEmployee";
 import { UploadCSVFileEmployee } from "../UploadCSVFileEmployee/UploadCSVFileEmployee";
 
-const DashBoardModalGroup = () => {
+export const DashBoardModalGroup = () => {
   const {
     isUserLogin,
     openAddEmPloyeeModal,
@@ -40,5 +40,3 @@ const DashBoardModalGroup = () => {
     </>
   );
 };
-
-export default DashBoardModalGroup;
