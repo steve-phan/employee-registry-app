@@ -1,20 +1,17 @@
-import express, { Request, Response, NextFunction } from "express";
-import multer from "multer";
+import { Request, Response, NextFunction } from "express";
 
 import { UploadServices } from "../services/upload.services";
 
-import { UserServices } from "../services/user.services";
-
-const upload = multer({ dest: "uploads/" });
-
 export class UploadControler {
-  static uploadFile(req: Request, res: Response, next: NextFunction) {
+  static async readCSVFile(req: Request, res: Response, next: NextFunction) {
     try {
+      // console.log({ files: req });
       const files = req.files as Express.Multer.File[];
       const fileName = files[0].filename;
-      console.log({ fileName });
-
-      return res.status(200).json({ message: "success" });
+      const fileContentData = await UploadServices.readCSVFile(fileName);
+      return res
+        .status(200)
+        .json({ message: "success", users: fileContentData });
     } catch (error) {
       console.log({ error });
       next(error);

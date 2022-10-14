@@ -8,7 +8,7 @@ const uploadRouter = express.Router();
 uploadRouter.post(
   "/employeefile",
   upload.array("files[]", 12),
-  UploadControler.uploadFile
+  UploadControler.readCSVFile
 );
 
 export default uploadRouter;

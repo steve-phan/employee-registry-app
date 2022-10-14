@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { connectMongoDB } from "./src/config/mogodb";
 import userRouter from "./src/routes/user.route";
+import uploadRouter from "./src/routes/upload.route";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ const app = express();
 connectMongoDB();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -21,10 +24,13 @@ app.use(
 );
 
 app.use("/account", userRouter);
+app.use("/upload", uploadRouter);
 
 // Handle error
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  return res.status(500).json({ message: "Something gone wrong", error: err });
+  return res
+    .status(500)
+    .json({ message: "Something gone wrong", error: err.message });
 });
 
 // start the express server
