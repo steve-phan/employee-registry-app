@@ -23,21 +23,33 @@ export interface IFetchData {
   userInfo: IUserInfo;
 }
 
-const baseURL = `http://localhost:2022/account`;
+const baseURL = `http://localhost:2022`;
 
 export class EmployeeAPI {
   static async getAllEmployees() {
-    const response = await axios.get(`${baseURL}/get-all-employees`);
+    const response = await axios.get(`${baseURL}/account/get-all-employees`);
     return response.data;
   }
 
   static async signIn({ signInInfo }: { signInInfo: ISignInInfo }) {
-    const response = await axios.post(`${baseURL}/signin`, { signInInfo });
+    const response = await axios.post(`${baseURL}/account/signin`, {
+      signInInfo,
+    });
     return response.data;
   }
 
   static async signUp({ userInfo }: IFetchData) {
-    const response = await axios.post(`${baseURL}/signup`, { userInfo });
+    const response = await axios.post(`${baseURL}/account/signup`, {
+      userInfo,
+    });
+    return response.data;
+  }
+
+  static async uploadCSVEmployeeFile({ formData }: { formData: FormData }) {
+    const response = await axios.post(
+      `${baseURL}/upload/employeefile`,
+      formData
+    );
     return response.data;
   }
 }

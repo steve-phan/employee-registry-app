@@ -1,37 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, message, Upload } from "antd";
 import { RcFile } from "antd/lib/upload";
-import axios from "axios";
+import { useQuery } from "react-query";
 
 import { DashBoardModal } from "../DashBoardModal/DashBoardModal";
 import { toggleUploadCSVFILEEMPLOYEEModal } from "../../../store/dashboard/dashboard.reducer";
+import { EmployeeAPI } from "../../../apis/API";
+import { setAllEmployees } from "../../../store/user/user.reducer";
+import { useAppDispatch } from "../../../store/hooks";
 
 export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [uploading, setUploading] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const { data, error, isLoading } = useQuery(
+    ["uploadCSVEmployeeFile", uploading],
+    () => {
+      if (uploading) {
+        const formData = new FormData();
+        fileList.forEach((file) => {
+          formData.append("files[]", file as RcFile);
+        });
+        return EmployeeAPI.uploadCSVEmployeeFile({ formData });
+      }
+    }
+  );
 
   const handleUpload = () => {
-    const formData = new FormData();
-    fileList.forEach((file) => {
-      formData.append("files[]", file as RcFile);
-    });
     setUploading(true);
-    axios
-      .post("http://localhost:2022/upload/employeefile", formData)
-      .then((res) => {})
-      .then(() => {
-        setFileList([]);
-        message.success("upload successfully.");
-      })
-      .catch(() => {
-        message.error("upload failed.");
-      })
-      .finally(() => {
-        setUploading(false);
-      });
   };
+
+  const uploadDone = () => {
+    setUploading(false);
+    setFileList([]);
+    dispatch(toggleUploadCSVFILEEMPLOYEEModal(false));
+  };
+
+  useEffect(() => {
+    if (uploading) {
+      if (error) {
+        message.error("upload failed.").then(uploadDone);
+      }
+      if (!isLoading && data) {
+        message.success("upload successfully.").then(uploadDone);
+        dispatch(setAllEmployees(data?.users));
+      }
+    }
+  }, [data, isLoading, uploading]);
 
   const props: UploadProps = {
     onRemove: (file) => {
