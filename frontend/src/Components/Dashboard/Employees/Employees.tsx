@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { EmployeeAPI } from "../../../apis/API";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
-import { columnsEmployee, ROLE, withChefPermision } from "./Employees.helpers";
+import { columnsEmployee, getActionColumn, ROLE } from "./Employees.helpers";
 
 const Employees = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +33,8 @@ const Employees = () => {
         key: `${index}_${employee.email}`,
       };
     });
+
+  const withChefPermision = getActionColumn(dispatch);
 
   if (isLoading) {
     return <Spin />;

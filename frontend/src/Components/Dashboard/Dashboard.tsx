@@ -8,20 +8,29 @@ import Employees from "./Employees/Employees";
 import SideBar from "./SideBar/SideBar";
 import { UploadCSVFileEmployee } from "./UploadCSVFileEmployee/UploadCSVFileEmployee";
 import { sliderStyles } from "./Dashboard.styles";
+import { DeleteEmployee } from "./DeleteEmployee/DeleteEmployee";
+import { EditEmployee } from "./EditEmployee/EditEmployee";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin, openAddEmPloyeeModal, openUploadCSVFileEmployee } =
-    useAppSelector((state) => {
-      return {
-        isUserLogin: state.employee.activeEmployee.isUserLogin,
-        openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
-        openUploadCSVFileEmployee:
-          state.dashboard.openModal.UPLOAD_CSV_FILE_EMPLOYEE,
-      };
-    });
+  const {
+    isUserLogin,
+    openAddEmPloyeeModal,
+    openUploadCSVFileEmployee,
+    openDeleteEmployeeModal,
+    openEditEmployeeModal,
+  } = useAppSelector((state) => {
+    return {
+      isUserLogin: state.employee.activeEmployee.isUserLogin,
+      openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
+      openUploadCSVFileEmployee:
+        state.dashboard.openModal.UPLOAD_CSV_FILE_EMPLOYEE,
+      openDeleteEmployeeModal: state.dashboard.openModal.DELETE_EMPLOYEE,
+      openEditEmployeeModal: state.dashboard.openModal.EDIT_EMPLOYEE,
+    };
+  });
 
   if (!isUserLogin) {
     return <Account />;
@@ -33,10 +42,14 @@ const Dashboard = () => {
         minHeight: "100vh",
       }}
     >
+      {openDeleteEmployeeModal && (
+        <DeleteEmployee open={openDeleteEmployeeModal} />
+      )}
       {openAddEmPloyeeModal && <AddEmployee open={openAddEmPloyeeModal} />}
       {openUploadCSVFileEmployee && (
         <UploadCSVFileEmployee open={openUploadCSVFileEmployee} />
       )}
+      {openEditEmployeeModal && <EditEmployee open={openEditEmployeeModal} />}
       <Sider
         breakpoint="sm"
         collapsible

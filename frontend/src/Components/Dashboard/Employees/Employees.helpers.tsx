@@ -1,6 +1,12 @@
 import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import React from "react";
+import { AnyAction, Dispatch } from "redux";
+import { IUserInfo } from "../../../apis/API";
+import {
+  setCurrentInActionEmployee,
+  toggleDeleteEmployeeModal,
+  toggleEditEmployeeModal,
+} from "../../../store/dashboard/dashboard.reducer";
 
 export const ROLE = {
   VERKÄUFER: "VERKÄUFER",
@@ -24,25 +30,35 @@ export const EmployeeColor = {
   [ROLE.CHEF]: "volcano",
 } as const;
 
-export const withChefPermision = {
+export const getActionColumn = (dispatch: Dispatch<AnyAction>) => ({
   title: "Action",
   dataIndex: "action",
   key: "action",
   ellipsis: true,
-  render: (_: any, record: { email: string }) => (
+  render: (_: any, employee: IUserInfo) => (
     <Space size="middle">
       <span
         className="action_button"
         onClick={() => {
-          console.log({ userName: record.email });
+          console.log({ employee });
+          dispatch(toggleEditEmployeeModal(true));
+          dispatch(setCurrentInActionEmployee(employee));
         }}
       >
         Edit
       </span>
-      <span className="action_button">Delete</span>
+      <span
+        onClick={() => {
+          dispatch(toggleDeleteEmployeeModal(true));
+          dispatch(setCurrentInActionEmployee(employee));
+        }}
+        className="action_button"
+      >
+        Delete
+      </span>
     </Space>
   ),
-};
+});
 
 export const columnsEmployee: ColumnsType<IEmployee> = [
   {
