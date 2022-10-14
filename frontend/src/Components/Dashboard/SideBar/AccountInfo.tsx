@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../store/hooks";
 import { EmployeeColor } from "../Employees/Employees.helpers";
 import { accountInfoStyles } from "./AccountInfo.styles";
 
-const AccountInfo = () => {
+export const AccountInfo = () => {
   const { firstName, lastName, role } = useAppSelector(
     (state) => state.employee.activeEmployee
   );
@@ -24,5 +24,3 @@ const AccountInfo = () => {
     </div>
   );
 };
-
-export default AccountInfo;

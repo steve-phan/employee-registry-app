@@ -5,12 +5,12 @@ import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
 import { sliderStyles } from "./Dashboard.styles";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
-import Employees from "./Employees/Employees";
-import SideBar from "./SideBar/SideBar";
+import { Employees } from "./Employees/Employees";
+import { SideBar } from "./SideBar/SideBar";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const [collap, setCollop] = useState(false);
   const { isUserLogin } = useAppSelector((state) => {
     return {
@@ -60,5 +60,3 @@ const Dashboard = () => {
     </Layout>
   );
 };
-
-export default Dashboard;

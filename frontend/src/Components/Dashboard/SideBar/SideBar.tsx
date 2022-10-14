@@ -3,11 +3,11 @@ import { Button, Row } from "antd";
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setSingOutActiveEmployee } from "../../../store/user/user.reducer";
-import ChefButtonsGroup from "../ChefButtonsGroup/ChefButtonsGroup";
+import { ChefButtonsGroup } from "../ChefButtonsGroup/ChefButtonsGroup";
 import { ROLE } from "../Employees/Employees.helpers";
-import AccountInfo from "./AccountInfo";
+import { AccountInfo } from "./AccountInfo";
 
-const SideBar = () => {
+export const SideBar = () => {
   const dispatch = useAppDispatch();
   const { role } = useAppSelector((state) => state.employee.activeEmployee);
   return (
@@ -37,5 +37,3 @@ const SideBar = () => {
     </div>
   );
 };
-
-export default SideBar;

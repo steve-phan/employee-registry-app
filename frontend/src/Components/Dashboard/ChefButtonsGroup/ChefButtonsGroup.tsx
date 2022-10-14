@@ -8,7 +8,7 @@ import {
   toggleUploadCSVFILEEMPLOYEEModal,
 } from "../../../store/dashboard/dashboard.reducer";
 
-const ChefButtonsGroup = () => {
+export const ChefButtonsGroup = () => {
   const dispatch = useAppDispatch();
 
   return (
@@ -36,5 +36,3 @@ const ChefButtonsGroup = () => {
     </Row>
   );
 };
-
-export default ChefButtonsGroup;

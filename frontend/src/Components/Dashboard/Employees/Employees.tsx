@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
 import { columnsEmployee, getActionColumn, ROLE } from "./Employees.helpers";
 
-const Employees = () => {
+export const Employees = () => {
   const dispatch = useAppDispatch();
   const { employees, roles } = useAppSelector((state) => {
     return {
@@ -57,5 +57,3 @@ const Employees = () => {
     />
   );
 };
-
-export default Employees;
