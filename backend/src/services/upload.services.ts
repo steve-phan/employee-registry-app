@@ -63,7 +63,7 @@ export class UploadServices {
         password,
         lastName: Vorname,
         firstName: Nachname,
-        role: [Rolle],
+        role: [Rolle.toUpperCase()],
       };
     });
 

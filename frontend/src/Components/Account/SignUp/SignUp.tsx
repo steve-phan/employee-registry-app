@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
-import { EmployeeAPI, IUserInfo, ROLE } from "../../../apis/API";
+import { EmployeeAPI, IUserInfo } from "../../../apis/API";
 import { useAppDispatch } from "../../../store/hooks";
 import {
   setActiveEmployee,
@@ -16,6 +16,7 @@ import {
   TSignUpBtn,
 } from "./SignUp.helpers";
 import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
+import { ROLE } from "../../Dashboard/Employees/Employees.helpers";
 
 export const SignUp = ({
   type = SignUpType.SELF_REGISTRATION,
@@ -43,7 +44,7 @@ export const SignUp = ({
   useEffect(() => {
     if (!isLoading && data) {
       if (type === SignUpType.SELF_REGISTRATION) {
-        dispatch(setActiveEmployee({ ...userInfo, role: [ROLE.EMPLOYEE] }));
+        dispatch(setActiveEmployee({ ...userInfo, role: [ROLE.VERKÄUFER] }));
       } else {
         dispatch(setAllEmployees(data?.users));
       }

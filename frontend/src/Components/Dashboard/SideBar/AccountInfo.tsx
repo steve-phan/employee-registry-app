@@ -1,7 +1,4 @@
 import { Avatar, Tag } from "antd";
-import { TypeFlags } from "typescript";
-
-import { ROLE } from "../../../apis/API";
 
 import { useAppSelector } from "../../../store/hooks";
 import { EmployeeColor } from "../Employees/Employees.helpers";

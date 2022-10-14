@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ROLE } from "../Components/Dashboard/Employees/Employees.helpers";
 
 import { EmployeeAPI, IUserInfo } from "./API";
 
@@ -24,7 +25,7 @@ describe("EmployeeAPI", () => {
       email: "pvn2022@gmail.com",
       address: "Berliner str 2, 10101",
       password: "verySecretPass",
-      role: ["EMPLOYEE"],
+      role: [ROLE.VERKÄUFER],
     };
     it("should return a SUCCESS message", async () => {
       mockedAxios.post.mockResolvedValue({

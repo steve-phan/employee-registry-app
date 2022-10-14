@@ -1,11 +1,6 @@
 import axios from "axios";
 
-export const ROLE = {
-  EMPLOYEE: "EMPLOYEE",
-  MANAGER: "MANAGER",
-} as const;
-
-export type TROLE = keyof typeof ROLE;
+import { TROLE } from "../Components/Dashboard/Employees/Employees.helpers";
 
 export interface ISignInInfo {
   userName: string;

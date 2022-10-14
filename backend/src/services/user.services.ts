@@ -1,11 +1,6 @@
 import bcrypt from "bcryptjs";
 
-import User from "../models/user.model";
-
-const ROLE = {
-  EMPLOYEE: "EMPLOYEE",
-  MANAGER: "MANAGER",
-} as const;
+import User, { ROLE } from "../models/user.model";
 
 type TROLE = keyof typeof ROLE;
 export interface ISignInInfo {
@@ -42,7 +37,7 @@ export class UserServices {
     if (existUser) {
       throw `UserName: ${userInfo.userName} or Email: ${userInfo.email} is already taken`;
     }
-    const user = new User({ ...userInfo, role: [ROLE.EMPLOYEE] });
+    const user = new User({ ...userInfo, role: [ROLE.VERKÄUFER] });
     user.password = bcrypt.hashSync(userInfo.password, 10);
     await user.save();
 

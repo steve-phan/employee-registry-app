@@ -2,7 +2,13 @@ import { Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import React from "react";
 
-import { ROLE, TROLE } from "../../../apis/API";
+export const ROLE = {
+  VERKÄUFER: "VERKÄUFER",
+  EINKÄUFER: "EINKÄUFER",
+  CHEF: "CHEF",
+} as const;
+
+export type TROLE = keyof typeof ROLE;
 
 export interface IEmployee {
   name: string;
@@ -12,8 +18,9 @@ export interface IEmployee {
 }
 
 export const EmployeeColor = {
-  EMPLOYEE: "geekblue",
-  MANAGER: "volcano",
+  [ROLE.EINKÄUFER]: "geekblue",
+  [ROLE.VERKÄUFER]: "green",
+  [ROLE.CHEF]: "volcano",
 } as const;
 
 export const columnsEmployee: ColumnsType<IEmployee> = [

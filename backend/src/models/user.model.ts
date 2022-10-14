@@ -1,10 +1,20 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const ROLE = {
-  EMPLOYEE: "EMPLOYEE",
-  MANAGER: "MANAGER",
+export const ROLE = {
+  VERKÄUFER: "VERKÄUFER",
+  EINKÄUFER: "EINKÄUFER",
+  CHEF: "CHEF",
 } as const;
+
+export type TROLE = keyof typeof ROLE;
+
+export interface IEmployee {
+  name: string;
+  email: string;
+  address: string;
+  role: TROLE[];
+}
 
 const userSchema = new Schema({
   userName: { type: String, unique: true, required: true },
@@ -13,7 +23,7 @@ const userSchema = new Schema({
   lastName: { type: String, required: true },
   firstName: { type: String, required: true },
   address: String,
-  role: [{ type: String, default: ROLE.EMPLOYEE }],
+  role: [{ type: String, default: ROLE.VERKÄUFER }],
   createdDate: { type: Date, default: Date.now },
 });
 
