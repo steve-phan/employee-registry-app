@@ -49,3 +49,13 @@
 .dashboard-modal .ant-modal-body {
   padding-bottom: 0;
 }
+
+.ant-space-item .action_button {
+  text-decoration: underline;
+  color: #2c7aff;
+  cursor: pointer;
+}
+
+.ant-space-item .action_button:hover {
+  color: #f21a65;
+}

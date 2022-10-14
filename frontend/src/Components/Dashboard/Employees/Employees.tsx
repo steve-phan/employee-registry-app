@@ -5,11 +5,16 @@ import { useQuery } from "react-query";
 import { EmployeeAPI } from "../../../apis/API";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
-import { columnsEmployee } from "./Employees.helpers";
+import { columnsEmployee, ROLE, withChefPermision } from "./Employees.helpers";
 
 const Employees = () => {
   const dispatch = useAppDispatch();
-  const employees = useAppSelector((state) => state.employee.allEmployees);
+  const { employees, roles } = useAppSelector((state) => {
+    return {
+      employees: state.employee.allEmployees,
+      roles: state.employee.activeEmployee.role,
+    };
+  });
   const { data, isLoading } = useQuery("getAllEmployees", () =>
     EmployeeAPI.getAllEmployees()
   );
@@ -37,9 +42,14 @@ const Employees = () => {
     return <Empty />;
   }
 
+  const columnsEmployeeWithPermission = roles.includes(ROLE.CHEF)
+    ? [...columnsEmployee, withChefPermision]
+    : columnsEmployee;
+
   return (
     <Table
-      columns={columnsEmployee}
+      //@ts-ignore
+      columns={columnsEmployeeWithPermission}
       dataSource={modifiedEmployee}
       pagination={{ defaultCurrent: 1, defaultPageSize: 10 }}
     />

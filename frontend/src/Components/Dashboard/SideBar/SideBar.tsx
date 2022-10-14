@@ -1,21 +1,15 @@
+import { LoginOutlined } from "@ant-design/icons";
 import { Button, Row } from "antd";
-import {
-  LoginOutlined,
-  EditOutlined,
-  CloudUploadOutlined,
-} from "@ant-design/icons";
-import React from "react";
 
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setSingOutActiveEmployee } from "../../../store/user/user.reducer";
-import {
-  toggleAddEmployeeModal,
-  toggleUploadCSVFILEEMPLOYEEModal,
-} from "../../../store/dashboard/dashboard.reducer";
+import ChefButtonsGroup from "../ChefButtonsGroup/ChefButtonsGroup";
+import { ROLE } from "../Employees/Employees.helpers";
 import AccountInfo from "./AccountInfo";
 
 const SideBar = () => {
   const dispatch = useAppDispatch();
+  const { role } = useAppSelector((state) => state.employee.activeEmployee);
   return (
     <div
       style={{
@@ -27,27 +21,8 @@ const SideBar = () => {
       }}
     >
       <AccountInfo />
+      {role.includes(ROLE.CHEF) && <ChefButtonsGroup />}
       <Row gutter={[0, 12]}>
-        <Button
-          block
-          type="primary"
-          icon={<CloudUploadOutlined />}
-          onClick={() => {
-            dispatch(toggleUploadCSVFILEEMPLOYEEModal(true));
-          }}
-        >
-          Upload Employee file?
-        </Button>
-        <Button
-          block
-          type="primary"
-          icon={<EditOutlined />}
-          onClick={() => {
-            dispatch(toggleAddEmployeeModal(true));
-          }}
-        >
-          Add employee?
-        </Button>
         <Button
           block
           danger

@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import React from "react";
 
@@ -15,6 +15,7 @@ export interface IEmployee {
   email: string;
   address: string;
   role: TROLE[];
+  action?: string;
 }
 
 export const EmployeeColor = {
@@ -22,6 +23,26 @@ export const EmployeeColor = {
   [ROLE.VERKÄUFER]: "green",
   [ROLE.CHEF]: "volcano",
 } as const;
+
+export const withChefPermision = {
+  title: "Action",
+  dataIndex: "action",
+  key: "action",
+  ellipsis: true,
+  render: (_: any, record: { email: string }) => (
+    <Space size="middle">
+      <span
+        className="action_button"
+        onClick={() => {
+          console.log({ userName: record.email });
+        }}
+      >
+        Edit
+      </span>
+      <span className="action_button">Delete</span>
+    </Space>
+  ),
+};
 
 export const columnsEmployee: ColumnsType<IEmployee> = [
   {
