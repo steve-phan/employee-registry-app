@@ -66,18 +66,32 @@ export const columnsEmployee: ColumnsType<IEmployee> = [
     dataIndex: "name",
     key: "name",
     ellipsis: true,
+    render: (userInfo) => {
+      return (
+        <span
+          className="view_button"
+          onClick={() => {
+            console.log({ userInfo });
+          }}
+        >
+          {userInfo.firstName}
+        </span>
+      );
+    },
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
     ellipsis: true,
+    responsive: ["md"],
   },
   {
     title: "Address",
     dataIndex: "address",
     key: "address",
     ellipsis: true,
+    responsive: ["lg"],
   },
   {
     title: "Role",

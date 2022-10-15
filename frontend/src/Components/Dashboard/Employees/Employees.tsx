@@ -29,7 +29,7 @@ export const Employees = () => {
     .map((employee, index) => {
       return {
         ...employee,
-        name: `${employee.firstName} ${employee.lastName}`,
+        name: employee,
         key: `${index}_${employee.email}`,
       };
     });

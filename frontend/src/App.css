@@ -59,3 +59,8 @@
 .ant-space-item .action_button:hover {
   color: #f21a65;
 }
+
+.ant-table-cell .view_button {
+  color: #2c7aff;
+  cursor: pointer;
+}
