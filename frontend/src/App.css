@@ -64,3 +64,11 @@
   color: #2c7aff;
   cursor: pointer;
 }
+
+.ant-breadcrumb.dashboard-employee {
+  padding: 12px;
+}
+
+.ant-breadcrumb .dashboard-employee__item {
+  cursor: pointer;
+}

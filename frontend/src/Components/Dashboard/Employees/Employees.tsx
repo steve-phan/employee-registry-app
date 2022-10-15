@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { EmployeeAPI } from "../../../apis/API";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
-import { columnsEmployee, getActionColumn, ROLE } from "./Employees.helpers";
+import { getColumnsEmployee, getActionColumn, ROLE } from "./Employees.helpers";
 
 export const Employees = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +43,7 @@ export const Employees = () => {
   if (employees.length === 0) {
     return <Empty />;
   }
-
+  const columnsEmployee = getColumnsEmployee(dispatch);
   const columnsEmployeeWithPermission = roles.includes(ROLE.CHEF)
     ? [...columnsEmployee, withChefPermision]
     : columnsEmployee;

@@ -5,6 +5,7 @@ import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
 import { sliderStyles } from "./Dashboard.styles";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
+import { EmployeePage } from "./EmployeePage/EmployeePage";
 import { Employees } from "./Employees/Employees";
 import { SideBar } from "./SideBar/SideBar";
 
@@ -12,9 +13,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin } = useAppSelector((state) => {
+  const { isUserLogin, openEmployeePage } = useAppSelector((state) => {
     return {
       isUserLogin: state.employee.activeEmployee.isUserLogin,
+      openEmployeePage: state.dashboard.employeePage.open,
     };
   });
 
@@ -52,9 +54,7 @@ export const Dashboard = () => {
             Welcome to Amazing gbmh
           </Typography.Paragraph>
         </Header>
-        <Content>
-          <Employees />
-        </Content>
+        <Content>{openEmployeePage ? <EmployeePage /> : <Employees />}</Content>
         <Footer>©{new Date().getFullYear()} Amzing gmbh</Footer>
       </Layout>
     </Layout>

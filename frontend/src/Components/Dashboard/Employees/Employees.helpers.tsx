@@ -4,8 +4,10 @@ import { AnyAction, Dispatch } from "redux";
 import { IUserInfo } from "../../../apis/API";
 import {
   setCurrentInActionEmployee,
+  setEmployeeInfoPage,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
+  toggleEmployeePage,
 } from "../../../store/dashboard/dashboard.reducer";
 
 export const ROLE = {
@@ -60,54 +62,66 @@ export const getActionColumn = (dispatch: Dispatch<AnyAction>) => ({
   ),
 });
 
-export const columnsEmployee: ColumnsType<IEmployee> = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    ellipsis: true,
-    render: (userInfo) => {
-      return (
-        <span
-          className="view_button"
-          onClick={() => {
-            console.log({ userInfo });
-          }}
-        >
-          {userInfo.firstName}
-        </span>
-      );
+export const getColumnsEmployee = (
+  dispatch: Dispatch<AnyAction>
+): ColumnsType<IEmployee> => {
+  return [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      ellipsis: true,
+      render: (userInfo) => {
+        return (
+          <span
+            className="view_button"
+            onClick={() => {
+              dispatch(toggleEmployeePage(true));
+              dispatch(setEmployeeInfoPage(userInfo));
+            }}
+          >
+            {userInfo.firstName + " " + userInfo.lastName}
+          </span>
+        );
+      },
     },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-    ellipsis: true,
-    responsive: ["md"],
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-    ellipsis: true,
-    responsive: ["lg"],
-  },
-  {
-    title: "Role",
-    key: "role",
-    ellipsis: true,
-    dataIndex: "role",
-    render: (_, { role }) => (
-      <>
-        {role.map((tag) => {
-          return (
-            <Tag color={EmployeeColor[tag]} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-];
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      ellipsis: true,
+      responsive: ["md"],
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      ellipsis: true,
+      responsive: ["lg"],
+    },
+    {
+      title: "Role",
+      key: "role",
+      ellipsis: true,
+      dataIndex: "role",
+      render: (_, { role }) => (
+        <>
+          {role.map((tag) => {
+            return (
+              <Tag color={EmployeeColor[tag]} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+  ];
+};
+
+export const getRandomAvatarURL = () => {
+  const randomNum = Math.round(Math.random() * 1000);
+  return `https://joeschmoe.io/api/v1/${
+    randomNum / 2 === 0 ? "male" : "female"
+  }/${randomNum}`;
+};

@@ -1,7 +1,10 @@
 import { Avatar, Tag } from "antd";
 
 import { useAppSelector } from "../../../store/hooks";
-import { EmployeeColor } from "../Employees/Employees.helpers";
+import {
+  EmployeeColor,
+  getRandomAvatarURL,
+} from "../Employees/Employees.helpers";
 import { accountInfoStyles } from "./AccountInfo.styles";
 
 export const AccountInfo = () => {
@@ -14,7 +17,7 @@ export const AccountInfo = () => {
         ...accountInfoStyles,
       }}
     >
-      <Avatar src="https://joeschmoe.io/api/v1/random" />
+      <Avatar src={getRandomAvatarURL()} />
       <div>{`${firstName} ${lastName}`}</div>
       {role.map((tag, index) => (
         <Tag key={index} color={EmployeeColor[tag]}>

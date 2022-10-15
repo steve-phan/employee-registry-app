@@ -12,6 +12,10 @@ const dashboardSlice = createSlice({
       EDIT_EMPLOYEE: false,
     },
     currentInActionEmployee: undefined as unknown as IUserInfo,
+    employeePage: {
+      open: false,
+      employeeInfo: undefined as unknown as IUserInfo,
+    },
   },
   reducers: {
     toggleAddEmployeeModal(state, action) {
@@ -29,6 +33,12 @@ const dashboardSlice = createSlice({
     setCurrentInActionEmployee(state, action) {
       state.currentInActionEmployee = action.payload;
     },
+    toggleEmployeePage(state, action) {
+      state.employeePage.open = action.payload;
+    },
+    setEmployeeInfoPage(state, action) {
+      state.employeePage.employeeInfo = action.payload;
+    },
   },
 });
 
@@ -37,7 +47,9 @@ export const {
   toggleUploadCSVFILEEMPLOYEEModal,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
+  toggleEmployeePage,
   setCurrentInActionEmployee,
+  setEmployeeInfoPage,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
