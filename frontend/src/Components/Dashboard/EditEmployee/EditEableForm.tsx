@@ -10,7 +10,7 @@ import { setAllEmployees } from "../../../store/user/user.reducer";
 import { noWhiteSpace } from "../../Account/SignUp/SignUp.helpers";
 
 export const EditEableForm = () => {
-  const [isEdit, setIsEdit] = useState(false);
+  const [isSubmitEdit, setIsSubmitEdit] = useState(false);
   const currentInActionEmployee = useAppSelector(
     (state) => state.dashboard.currentInActionEmployee
   );
@@ -19,7 +19,7 @@ export const EditEableForm = () => {
   const { data, error, isLoading } = useQuery(
     ["signUpEmployee", userInfo],
     () => {
-      if (isEdit && userInfo) {
+      if (isSubmitEdit && userInfo) {
         return EmployeeAPI.editEmployee({ userInfo });
       }
     }
@@ -27,15 +27,15 @@ export const EditEableForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values: IUserInfo) => {
-    setIsEdit(true);
+    setIsSubmitEdit(true);
     setUserInfo(values);
   };
 
   useEffect(() => {
-    if (isEdit && !isLoading && data) {
+    if (isSubmitEdit && !isLoading && data) {
       dispatch(setAllEmployees(data?.users));
       message.success(`edit ${userInfo.userName} successfully.`).then(() => {
-        setIsEdit(false);
+        setIsSubmitEdit(false);
         dispatch(toggleEditEmployeeModal(false));
       });
     }

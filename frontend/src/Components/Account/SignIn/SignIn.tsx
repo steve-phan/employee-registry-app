@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Form, Input, message, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
@@ -10,22 +10,27 @@ import { noWhiteSpace } from "../SignUp/SignUp.helpers";
 
 export const SignIn: React.FC = () => {
   const [signInInfo, setSignInInfo] = useState<ISignInInfo>();
+  const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(
-    ["signInEmployee", signInInfo],
+    ["signInEmployee", signInInfo, isSubmitSignIn],
     () => {
-      if (signInInfo) {
+      if (isSubmitSignIn && signInInfo) {
         return EmployeeAPI.signIn({ signInInfo });
       }
     }
   );
   const onFinish = (values: any) => {
+    setIsSubmitSignIn(true);
     setSignInInfo(values);
   };
 
   useEffect(() => {
     if (!isLoading && data) {
       dispatch(setActiveEmployee({ ...data.user }));
+    }
+    if (error) {
+      message.error("SignIn failed").then(() => setIsSubmitSignIn(false));
     }
   }, [data, isLoading, dispatch, signInInfo]);
   return (

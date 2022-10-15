@@ -9,24 +9,24 @@ import { setAllEmployees } from "../../../store/user/user.reducer";
 import { DashBoardModal } from "../DashBoardModal/DashBoardModal";
 
 export const DeleteEmployee = ({ open }: { open: boolean }) => {
-  const [isDelete, setIsDelete] = useState(false);
+  const [isSubmitDelete, setIsSubmitDelete] = useState(false);
   const dispatch = useAppDispatch();
   const { email, firstName, lastName, userName } = useAppSelector(
     (state) => state.dashboard.currentInActionEmployee
   );
-  const { data, error } = useQuery(["deleteEmployee", isDelete], () => {
-    if (isDelete) {
+  const { data, error } = useQuery(["deleteEmployee", isSubmitDelete], () => {
+    if (isSubmitDelete) {
       return EmployeeAPI.deleteEmployee({ email });
     }
   });
   const handleDeleteEmployee = () => {
-    setIsDelete(true);
+    setIsSubmitDelete(true);
   };
 
   useEffect(() => {
     if (data) {
       message.success(`delete ${userName} successfully.`).then(() => {
-        setIsDelete(false);
+        setIsSubmitDelete(false);
         dispatch(setAllEmployees(data?.users));
         dispatch(toggleDeleteEmployeeModal(false));
       });

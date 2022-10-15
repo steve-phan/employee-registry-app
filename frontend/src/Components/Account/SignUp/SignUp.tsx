@@ -1,4 +1,4 @@
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Typography, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -25,10 +25,11 @@ export const SignUp = ({
 }) => {
   const [userInfo, setUserInfo] = useState<IUserInfo>();
   const dispatch = useAppDispatch();
+  const [isSubmitSignUp, setIsSubmitSignUp] = useState(false);
   const { data, error, isLoading } = useQuery(
-    ["signUpEmployee", userInfo],
+    ["signUpEmployee", isSubmitSignUp],
     () => {
-      if (userInfo) {
+      if (isSubmitSignUp && userInfo) {
         const password =
           type === SignUpType.ADD_EMPLOYEE ? "123456" : userInfo.password;
         return EmployeeAPI.signUp({ userInfo: { ...userInfo, password } });
@@ -38,6 +39,7 @@ export const SignUp = ({
   const [form] = Form.useForm();
 
   const onFinish = (values: IUserInfo) => {
+    setIsSubmitSignUp(true);
     setUserInfo(values);
   };
 
@@ -48,7 +50,14 @@ export const SignUp = ({
       } else {
         dispatch(setAllEmployees(data?.users));
       }
-      dispatch(toggleAddEmployeeModal(false));
+
+      message
+        .success("register successfully")
+        .then(() => dispatch(toggleAddEmployeeModal(false)));
+    }
+    if (error) {
+      message.error("register failed");
+      setIsSubmitSignUp(false);
     }
   }, [data, isLoading]);
 
@@ -58,10 +67,6 @@ export const SignUp = ({
       form={form}
       name="register"
       onFinish={onFinish}
-      initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
-      }}
       scrollToFirstError
     >
       <Form.Item

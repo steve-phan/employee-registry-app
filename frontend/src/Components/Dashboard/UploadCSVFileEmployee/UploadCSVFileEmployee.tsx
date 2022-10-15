@@ -13,13 +13,13 @@ import { useAppDispatch } from "../../../store/hooks";
 
 export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [uploading, setUploading] = useState(false);
+  const [isSubmituploading, setisSubmitUploading] = useState(false);
   const dispatch = useAppDispatch();
 
   const { data, error, isLoading } = useQuery(
-    ["uploadCSVEmployeeFile", uploading],
+    ["uploadCSVEmployeeFile", isSubmituploading],
     () => {
-      if (uploading) {
+      if (isSubmituploading) {
         const formData = new FormData();
         fileList.forEach((file) => {
           formData.append("files[]", file as RcFile);
@@ -30,17 +30,21 @@ export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
   );
 
   const handleUpload = () => {
-    setUploading(true);
+    if (fileList.length === 0) {
+      alert("please select a file to upload");
+    } else {
+      setisSubmitUploading(true);
+    }
   };
 
   const uploadDone = () => {
-    setUploading(false);
+    setisSubmitUploading(false);
     setFileList([]);
     dispatch(toggleUploadCSVFILEEMPLOYEEModal(false));
   };
 
   useEffect(() => {
-    if (uploading) {
+    if (isSubmituploading) {
       if (error) {
         message.error("upload failed.").then(uploadDone);
       }
@@ -48,8 +52,9 @@ export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
         message.success("upload successfully.").then(uploadDone);
         dispatch(setAllEmployees(data?.users));
       }
+      setisSubmitUploading(false);
     }
-  }, [data, isLoading, uploading]);
+  }, [data, isLoading, isSubmituploading]);
 
   const props: UploadProps = {
     onRemove: (file) => {
