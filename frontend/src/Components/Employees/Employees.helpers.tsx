@@ -76,8 +76,8 @@ export const getColumnsEmployee = (
           <span
             className="view_button"
             onClick={() => {
-              dispatch(toggleEmployeeDetails(true));
               dispatch(setEmployeeInfoPage(userInfo));
+              dispatch(toggleEmployeeDetails(true));
             }}
           >
             {userInfo.firstName + " " + userInfo.lastName}

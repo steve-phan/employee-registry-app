@@ -21,7 +21,7 @@ export const Dashboard = () => {
   const { isUserLogin, openEmployeePage } = useAppSelector((state) => {
     return {
       isUserLogin: state.employee.activeEmployee.isUserLogin,
-      openEmployeePage: state.dashboard.employeePage.open,
+      openEmployeePage: state.dashboard.employeeDetails.open,
     };
   });
 

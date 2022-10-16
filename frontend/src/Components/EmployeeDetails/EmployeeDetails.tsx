@@ -17,6 +17,7 @@ import { toggleEmployeeDetails } from "../../store/dashboard/dashboard.reducer";
 import { useAppDispatch } from "../../store/hooks";
 import { getRandomAvatarURL } from "../Employees/Employees.helpers";
 import { wrapCommentStyles } from "./EmployeeDetails.styles";
+import { EmployeeDetailsHeader } from "./EmployeeDetailsHeader/EmployeeDetailsHeader";
 
 dayjs.extend(relativeTime);
 
@@ -131,6 +132,7 @@ export const EmployeeDetails = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item>Employee Details</Breadcrumb.Item>
       </Breadcrumb>
+      <EmployeeDetailsHeader />
       <div style={wrapCommentStyles}>
         <List
           className="comment-list"

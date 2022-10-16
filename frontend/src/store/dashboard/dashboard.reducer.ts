@@ -12,7 +12,7 @@ const dashboardSlice = createSlice({
       EDIT_EMPLOYEE: false,
     },
     currentInActionEmployee: undefined as unknown as IUserInfo,
-    employeePage: {
+    employeeDetails: {
       open: false,
       employeeInfo: undefined as unknown as IUserInfo,
     },
@@ -34,10 +34,10 @@ const dashboardSlice = createSlice({
       state.currentInActionEmployee = action.payload;
     },
     toggleEmployeeDetails(state, action) {
-      state.employeePage.open = action.payload;
+      state.employeeDetails.open = action.payload;
     },
     setEmployeeInfoPage(state, action) {
-      state.employeePage.employeeInfo = action.payload;
+      state.employeeDetails.employeeInfo = action.payload;
     },
   },
 });

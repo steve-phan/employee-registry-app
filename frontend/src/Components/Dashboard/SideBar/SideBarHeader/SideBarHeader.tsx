@@ -5,7 +5,7 @@ import { containerGroupSideBarStyles } from "../SideBar.styles";
 import { ButtonWithIcon } from "../../../shared/ButtonWithIcon/ButtonWithIcon";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
-  setCurrentInActionEmployee,
+  setEmployeeInfoPage,
   toggleEmployeeDetails,
 } from "../../../../store/dashboard/dashboard.reducer";
 
@@ -28,7 +28,8 @@ export const SideBarHeader = () => {
         <ButtonWithIcon
           icon={<UserOutlined />}
           onClick={() => {
-            dispatch(setCurrentInActionEmployee(activeEmployee));
+            dispatch(setEmployeeInfoPage(activeEmployee));
+            dispatch(toggleEmployeeDetails(true));
           }}
         >
           My profile
