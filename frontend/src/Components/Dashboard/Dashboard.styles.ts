@@ -3,5 +3,17 @@ export const sliderStyles = {
   top: 0,
   zIndex: 100,
   height: "100vh",
-  background: "#ff8968",
+};
+
+export const headerStyles = {
+  background: "white",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+export const headerLogoStyles = {
+  marginBottom: 0,
+  fontSize: "20px",
+  color: "#ff8968",
 };

@@ -1,38 +1,37 @@
 import { LoginOutlined } from "@ant-design/icons";
-import { Button, Row } from "antd";
+import { Row, Divider } from "antd";
 
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { setSingOutActiveEmployee } from "../../../store/user/user.reducer";
-import { ChefButtonsGroup } from "../ChefButtonsGroup/ChefButtonsGroup";
-import { ROLE } from "../Employees/Employees.helpers";
-import { AccountInfo } from "./AccountInfo";
+import { ButtonWithIcon } from "../../shared/ButtonWithIcon/ButtonWithIcon";
+import { ChefButtonsGroup } from "./ChefButtonsGroup/ChefButtonsGroup";
+import { containerGroupSideBarStyles } from "./SideBar.styles";
+import { SideBarHeader } from "./SideBarHeader/SideBarHeader";
 
 export const SideBar = () => {
   const dispatch = useAppDispatch();
-  const { role } = useAppSelector((state) => state.employee.activeEmployee);
   return (
     <div
       style={{
+        ...containerGroupSideBarStyles,
         height: "100%",
-        padding: "30px 8px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
+        padding: "30px 8px 0",
       }}
     >
-      <AccountInfo />
-      {role.includes(ROLE.CHEF) && <ChefButtonsGroup />}
-      <Row gutter={[0, 12]}>
-        <Button
-          block
-          danger
+      <div>
+        <SideBarHeader />
+        <Divider style={{ background: "#cecece" }} />
+        <ChefButtonsGroup />
+      </div>
+      <Row>
+        <ButtonWithIcon
           icon={<LoginOutlined />}
           onClick={() => {
             dispatch(setSingOutActiveEmployee());
           }}
         >
           Sign out
-        </Button>
+        </ButtonWithIcon>
       </Row>
     </div>
   );

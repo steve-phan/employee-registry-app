@@ -3,11 +3,16 @@ import { useState } from "react";
 
 import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
-import { sliderStyles } from "./Dashboard.styles";
+import { EmployeeAvatar } from "../Account/EmployeeAvatar/EmployeeAvatar";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
 import { EmployeePage } from "./EmployeePage/EmployeePage";
 import { Employees } from "./Employees/Employees";
 import { SideBar } from "./SideBar/SideBar";
+import {
+  sliderStyles,
+  headerStyles,
+  headerLogoStyles,
+} from "./Dashboard.styles";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -32,6 +37,7 @@ export const Dashboard = () => {
     >
       <DashBoardModalGroup />
       <Sider
+        theme="dark"
         breakpoint="sm"
         collapsible
         collapsedWidth="30"
@@ -45,14 +51,11 @@ export const Dashboard = () => {
         {!collap && <SideBar />}
       </Sider>
       <Layout>
-        <Header
-          style={{
-            background: "white",
-          }}
-        >
-          <Typography.Paragraph strong>
-            Welcome to Amazing gbmh
+        <Header style={headerStyles}>
+          <Typography.Paragraph strong style={headerLogoStyles}>
+            Amazing gbmh
           </Typography.Paragraph>
+          <EmployeeAvatar />
         </Header>
         <Content>{openEmployeePage ? <EmployeePage /> : <Employees />}</Content>
         <Footer>©{new Date().getFullYear()} Amzing gmbh</Footer>

@@ -1,38 +1,40 @@
-import { Button, Row } from "antd";
+import { Row } from "antd";
 import { EditOutlined, CloudUploadOutlined } from "@ant-design/icons";
-import React from "react";
 
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import {
   toggleAddEmployeeModal,
   toggleUploadCSVFILEEMPLOYEEModal,
-} from "../../../store/dashboard/dashboard.reducer";
+} from "../../../../store/dashboard/dashboard.reducer";
+import { ROLE } from "../../Employees/Employees.helpers";
+import { ButtonWithIcon } from "../../../shared/ButtonWithIcon/ButtonWithIcon";
 
 export const ChefButtonsGroup = () => {
   const dispatch = useAppDispatch();
+  const { role } = useAppSelector((state) => state.employee.activeEmployee);
+
+  if (!role.includes(ROLE.CHEF)) {
+    return null;
+  }
 
   return (
     <Row gutter={[0, 12]}>
-      <Button
-        block
-        type="primary"
+      <ButtonWithIcon
         icon={<CloudUploadOutlined />}
         onClick={() => {
           dispatch(toggleUploadCSVFILEEMPLOYEEModal(true));
         }}
       >
         Upload Employee file?
-      </Button>
-      <Button
-        block
-        type="primary"
+      </ButtonWithIcon>
+      <ButtonWithIcon
         icon={<EditOutlined />}
         onClick={() => {
           dispatch(toggleAddEmployeeModal(true));
         }}
       >
         Add employee?
-      </Button>
+      </ButtonWithIcon>
     </Row>
   );
 };

@@ -5,7 +5,7 @@ import { Button, message, Upload } from "antd";
 import { RcFile } from "antd/lib/upload";
 import { useQuery } from "react-query";
 
-import { DashBoardModal } from "../DashBoardModal/DashBoardModal";
+import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 import { toggleUploadCSVFILEEMPLOYEEModal } from "../../../store/dashboard/dashboard.reducer";
 import { EmployeeAPI } from "../../../apis/API";
 import { setAllEmployees } from "../../../store/user/user.reducer";

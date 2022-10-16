@@ -6,7 +6,7 @@ import { EmployeeAPI } from "../../../apis/API";
 import { toggleDeleteEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
-import { DashBoardModal } from "../DashBoardModal/DashBoardModal";
+import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 
 export const DeleteEmployee = ({ open }: { open: boolean }) => {
   const [isSubmitDelete, setIsSubmitDelete] = useState(false);

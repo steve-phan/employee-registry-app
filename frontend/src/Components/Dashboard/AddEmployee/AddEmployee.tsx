@@ -3,7 +3,7 @@ import React from "react";
 import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 import { SignUp } from "../../Account/SignUp/SignUp";
 import { SignUpType } from "../../Account/SignUp/SignUp.helpers";
-import { DashBoardModal } from "../DashBoardModal/DashBoardModal";
+import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 
 export const AddEmployee = ({ open }: { open: boolean }) => {
   return (
