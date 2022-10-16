@@ -5,8 +5,8 @@ import { useAppSelector } from "../../store/hooks";
 import { Account } from "../Account/Account";
 import { EmployeeAvatar } from "../Account/EmployeeAvatar/EmployeeAvatar";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
-import { EmployeePage } from "./EmployeePage/EmployeePage";
-import { Employees } from "./Employees/Employees";
+import { EmployeeDetails } from "../EmployeeDetails/EmployeeDetails";
+import { Employees } from "../Employees/Employees";
 import { SideBar } from "./SideBar/SideBar";
 import {
   sliderStyles,
@@ -57,7 +57,9 @@ export const Dashboard = () => {
           </Typography.Paragraph>
           <EmployeeAvatar />
         </Header>
-        <Content>{openEmployeePage ? <EmployeePage /> : <Employees />}</Content>
+        <Content>
+          {openEmployeePage ? <EmployeeDetails /> : <Employees />}
+        </Content>
         <Footer>©{new Date().getFullYear()} Amzing gmbh</Footer>
       </Layout>
     </Layout>

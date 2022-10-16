@@ -2,9 +2,9 @@ import { Empty, Spin, Table } from "antd";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../../apis/API";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setAllEmployees } from "../../../store/user/user.reducer";
+import { EmployeeAPI } from "../../apis/API";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setAllEmployees } from "../../store/user/user.reducer";
 import { getColumnsEmployee, getActionColumn, ROLE } from "./Employees.helpers";
 
 export const Employees = () => {

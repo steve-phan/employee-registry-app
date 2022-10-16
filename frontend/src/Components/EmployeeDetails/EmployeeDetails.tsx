@@ -13,10 +13,10 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { toggleEmployeePage } from "../../../store/dashboard/dashboard.reducer";
-import { useAppDispatch } from "../../../store/hooks";
+import { toggleEmployeePage } from "../../store/dashboard/dashboard.reducer";
+import { useAppDispatch } from "../../store/hooks";
 import { getRandomAvatarURL } from "../Employees/Employees.helpers";
-import { wrapCommentStyles } from "./EmployeePage.styles";
+import { wrapCommentStyles } from "./EmployeeDetails.styles";
 
 dayjs.extend(relativeTime);
 
@@ -72,7 +72,7 @@ const data = [
     ),
   },
 ];
-export const EmployeePage = () => {
+export const EmployeeDetails = () => {
   const dispatch = useAppDispatch();
   const [comments, setComments] = useState<CommentItem[]>([]);
   const [submitting, setSubmitting] = useState(false);

@@ -16,7 +16,7 @@ import {
   TSignUpBtn,
 } from "./SignUp.helpers";
 import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { ROLE } from "../../Dashboard/Employees/Employees.helpers";
+import { ROLE } from "../../Employees/Employees.helpers";
 
 export const SignUp = ({
   type = SignUpType.SELF_REGISTRATION,

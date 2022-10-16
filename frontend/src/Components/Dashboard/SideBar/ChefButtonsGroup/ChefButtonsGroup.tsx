@@ -6,7 +6,7 @@ import {
   toggleAddEmployeeModal,
   toggleUploadCSVFILEEMPLOYEEModal,
 } from "../../../../store/dashboard/dashboard.reducer";
-import { ROLE } from "../../Employees/Employees.helpers";
+import { ROLE } from "../../../Employees/Employees.helpers";
 import { ButtonWithIcon } from "../../../shared/ButtonWithIcon/ButtonWithIcon";
 
 export const ChefButtonsGroup = () => {
