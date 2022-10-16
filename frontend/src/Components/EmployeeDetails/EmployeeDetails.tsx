@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { toggleEmployeePage } from "../../store/dashboard/dashboard.reducer";
+import { toggleEmployeeDetails } from "../../store/dashboard/dashboard.reducer";
 import { useAppDispatch } from "../../store/hooks";
 import { getRandomAvatarURL } from "../Employees/Employees.helpers";
 import { wrapCommentStyles } from "./EmployeeDetails.styles";
@@ -123,7 +123,7 @@ export const EmployeeDetails = () => {
         <Breadcrumb.Item
           className="dashboard-employee__item"
           onClick={() => {
-            dispatch(toggleEmployeePage(false));
+            dispatch(toggleEmployeeDetails(false));
           }}
         >
           <UserOutlined />

@@ -7,7 +7,7 @@ import {
   setEmployeeInfoPage,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
-  toggleEmployeePage,
+  toggleEmployeeDetails,
 } from "../../store/dashboard/dashboard.reducer";
 
 export const ROLE = {
@@ -76,7 +76,7 @@ export const getColumnsEmployee = (
           <span
             className="view_button"
             onClick={() => {
-              dispatch(toggleEmployeePage(true));
+              dispatch(toggleEmployeeDetails(true));
               dispatch(setEmployeeInfoPage(userInfo));
             }}
           >

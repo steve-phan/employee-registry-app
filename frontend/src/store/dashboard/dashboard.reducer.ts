@@ -33,7 +33,7 @@ const dashboardSlice = createSlice({
     setCurrentInActionEmployee(state, action) {
       state.currentInActionEmployee = action.payload;
     },
-    toggleEmployeePage(state, action) {
+    toggleEmployeeDetails(state, action) {
       state.employeePage.open = action.payload;
     },
     setEmployeeInfoPage(state, action) {
@@ -47,7 +47,7 @@ export const {
   toggleUploadCSVFILEEMPLOYEEModal,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
-  toggleEmployeePage,
+  toggleEmployeeDetails,
   setCurrentInActionEmployee,
   setEmployeeInfoPage,
 } = dashboardSlice.actions;
