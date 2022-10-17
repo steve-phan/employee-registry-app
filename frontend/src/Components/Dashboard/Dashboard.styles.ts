@@ -3,6 +3,7 @@ export const sliderStyles = {
   top: 0,
   zIndex: 100,
   height: "100vh",
+  position: "fixed" as "fixed",
 };
 
 export const headerStyles = {

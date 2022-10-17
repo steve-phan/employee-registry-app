@@ -53,7 +53,12 @@ export const Dashboard = () => {
       >
         {!collap && <SideBar />}
       </Sider>
-      <Layout>
+      <Layout
+        style={{
+          maxWidth: collap ? `calc(100% - 30px)` : `calc(100% - 200px)`,
+          marginLeft: "auto",
+        }}
+      >
         <Header style={headerStyles}>
           <Typography.Paragraph strong style={headerLogoStyles}>
             Amazing gbmh

@@ -6,8 +6,8 @@ export class CommentControler {
   static async getAllComments(req: Request, res: Response, next: NextFunction) {
     try {
       const { employeeId } = req.body;
-      const allComents = await CommentServices.getAllComments(employeeId);
-      res.status(200).json({ comments: allComents, message: "SUCCESS" });
+      const allComents = await CommentServices.getAllComments({ employeeId });
+      res.status(200).json({ allComents, message: "SUCCESS" });
     } catch (error) {
       next(error);
     }

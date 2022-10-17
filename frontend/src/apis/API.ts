@@ -74,11 +74,19 @@ export class EmployeeAPI {
     );
     return response.data;
   }
+  //***COMMENTS SECTION***
 
   static async addComment({ employeeId, comment }: IAddCommentProps) {
     const response = await axios.post(`${baseURL}/comment/add-comment`, {
       employeeId,
       comment,
+    });
+    return response.data;
+  }
+
+  static async getAllComments({ employeeId }: { employeeId: string }) {
+    const response = await axios.post(`${baseURL}/comment/get-all-comments`, {
+      employeeId,
     });
     return response.data;
   }

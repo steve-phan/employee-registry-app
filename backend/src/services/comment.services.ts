@@ -12,11 +12,10 @@ interface IAddComment {
 export class CommentServices {
   static async getAllComments({ employeeId }: { employeeId: string }) {
     const allComents = await Comment.find({ employeeId });
-    return allComents;
+    return allComents[0];
   }
 
   static async addComment(commentInfo: IAddComment) {
-    console.log({ commentInfo });
     const {
       employeeId,
       comment: { author, authorId, content },
