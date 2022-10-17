@@ -43,7 +43,7 @@ const data = [
   {
     actions: [<span key="comment-list-reply-to-0">Reply to</span>],
     author: "Han Solo",
-    avatar: getRandomAvatarURL(),
+    // avatar: getRandomAvatarURL(),
     content: (
       <p
         style={{
@@ -132,12 +132,16 @@ export const EmployeeDetails = () => {
       setValue("");
     }
   }, [submitting]);
-  const employeeAvatar = useMemo(getRandomAvatarURL, []);
+
+  const employeeAvatar = useMemo(
+    () => getRandomAvatarURL(activeEmployee?._id),
+    []
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
-  console.log({ value });
+  console.log({ employeeAvatar });
   const handleSubmit = () => {
     if (!value) return;
 

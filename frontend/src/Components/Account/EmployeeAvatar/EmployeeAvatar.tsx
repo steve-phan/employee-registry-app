@@ -4,8 +4,12 @@ import { useMemo } from "react";
 import { getRandomAvatarURL } from "../../Employees/Employees.helpers";
 import { employeeAvatarStyles } from "./EmployeeAvatar.styles";
 
-export const EmployeeAvatar = () => {
-  const employeeAvatarURL = useMemo(getRandomAvatarURL, []);
+export const EmployeeAvatar = ({ employeeId }: { employeeId: string }) => {
+  const employeeAvatarURL = useMemo(
+    () => getRandomAvatarURL(employeeId),
+    [employeeId]
+  );
+
   return (
     <div
       style={{

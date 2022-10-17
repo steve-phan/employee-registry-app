@@ -5,13 +5,13 @@ import { EmployeeAvatar } from "../../Account/EmployeeAvatar/EmployeeAvatar";
 import { EmployeeColor } from "../../Employees/Employees.helpers";
 
 export const EmployeeDetailsHeader = () => {
-  const { firstName, lastName, role, address } = useAppSelector(
+  const { firstName, lastName, role, address, _id } = useAppSelector(
     (state) => state.dashboard.employeeDetails.employeeInfo
   );
   return (
     <Row>
       <Col flex="60px">
-        <EmployeeAvatar />
+        <EmployeeAvatar employeeId={_id} />
       </Col>
       <Col
         flex="auto"

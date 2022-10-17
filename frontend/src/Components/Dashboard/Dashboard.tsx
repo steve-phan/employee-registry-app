@@ -18,12 +18,15 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin, openEmployeePage } = useAppSelector((state) => {
-    return {
-      isUserLogin: state.employee.activeEmployee.isUserLogin,
-      openEmployeePage: state.dashboard.employeeDetails.open,
-    };
-  });
+  const { isUserLogin, openEmployeePage, employeeId } = useAppSelector(
+    (state) => {
+      return {
+        employeeId: state.employee.activeEmployee._id,
+        isUserLogin: state.employee.activeEmployee.isUserLogin,
+        openEmployeePage: state.dashboard.employeeDetails.open,
+      };
+    }
+  );
 
   if (!isUserLogin) {
     return <Account />;
@@ -55,7 +58,7 @@ export const Dashboard = () => {
           <Typography.Paragraph strong style={headerLogoStyles}>
             Amazing gbmh
           </Typography.Paragraph>
-          <EmployeeAvatar />
+          <EmployeeAvatar employeeId={employeeId} />
         </Header>
         <Content>
           {openEmployeePage ? <EmployeeDetails /> : <Employees />}

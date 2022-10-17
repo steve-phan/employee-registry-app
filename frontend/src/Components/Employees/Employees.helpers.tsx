@@ -119,9 +119,10 @@ export const getColumnsEmployee = (
   ];
 };
 
-export const getRandomAvatarURL = () => {
-  const randomNum = Math.round(Math.random() * 1000);
+export const getRandomAvatarURL = (employeeId: string) => {
+  const avatarId = Number(employeeId.replace(/[^0-9]/g, ""));
+
   return `https://joeschmoe.io/api/v1/${
-    randomNum / 2 === 0 ? "male" : "female"
-  }/${randomNum}`;
+    avatarId / 2 === 0 ? "male" : "female"
+  }/${avatarId}`;
 };
