@@ -1,8 +1,8 @@
 import React from "react";
 
 import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { SignUp } from "../../Account/SignUp/SignUp";
-import { SignUpType } from "../../Account/SignUp/SignUp.helpers";
+import { EmployeeSignUp } from "../../Account/EmployeeSignUp/EmployeeSignUp";
+import { SignUpType } from "../../Account/EmployeeSignUp/EmployeeSignUp.helpers";
 import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 
 export const AddEmployee = ({ open }: { open: boolean }) => {
@@ -12,7 +12,7 @@ export const AddEmployee = ({ open }: { open: boolean }) => {
       toggleModal={toggleAddEmployeeModal}
       title="Add a new employee"
     >
-      <SignUp type={SignUpType.ADD_EMPLOYEE} />
+      <EmployeeSignUp type={SignUpType.ADD_EMPLOYEE} />
     </DashBoardModal>
   );
 };

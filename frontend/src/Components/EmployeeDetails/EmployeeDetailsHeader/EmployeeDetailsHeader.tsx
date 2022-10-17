@@ -1,5 +1,5 @@
-import { Col, Divider, Row, Tag, Typography } from "antd";
-import React from "react";
+import { Col, Row, Tag } from "antd";
+
 import { useAppSelector } from "../../../store/hooks";
 import { EmployeeAvatar } from "../../Account/EmployeeAvatar/EmployeeAvatar";
 import { EmployeeColor } from "../../Employees/Employees.helpers";

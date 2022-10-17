@@ -2,26 +2,30 @@ import { UserOutlined, UserAddOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 import React from "react";
 
-import { SignUp } from "./SignUp/SignUp";
-import { SignIn } from "./SignIn/SignIn";
+import { EmployeeSignUp } from "./EmployeeSignUp/EmployeeSignUp";
+import { EmployeeSignIn } from "./EmployeeSignIn/EmployeeSignIn";
 
-export const Account: React.FC = () => {
+export const EmployeeAccount: React.FC = () => {
   const accountHeadings = [
     {
       title: "Login",
       icon: <UserAddOutlined />,
-      children: <SignIn />,
+      children: <EmployeeSignIn />,
     },
 
     {
       title: "Registration",
       icon: <UserOutlined />,
-      children: <SignUp />,
+      children: <EmployeeSignUp />,
     },
   ];
   return (
     <div
-      style={{ margin: "200px auto 0 auto", maxWidth: "450px", padding: 16 }}
+      style={{
+        margin: "0 auto",
+        maxWidth: "450px",
+        padding: "150px 16px 16px ",
+      }}
     >
       <Tabs
         defaultActiveKey="1"

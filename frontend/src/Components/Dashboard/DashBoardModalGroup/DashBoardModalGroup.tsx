@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../store/hooks";
-import { Account } from "../../Account/Account";
+import { EmployeeAccount } from "../../Account/EmployeeAccount";
 import { AddEmployee } from "../AddEmployee/AddEmployee";
 import { DeleteEmployee } from "../DeleteEmployee/DeleteEmployee";
 import { EditEmployee } from "../EditEmployee/EditEmployee";
@@ -25,7 +25,7 @@ export const DashBoardModalGroup = () => {
 
   // We might need this condition to reuse in another component
   if (!isUserLogin) {
-    return <Account />;
+    return <EmployeeAccount />;
   }
   return (
     <>

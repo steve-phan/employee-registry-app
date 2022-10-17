@@ -2,7 +2,7 @@ import { Layout, Typography } from "antd";
 import { useState } from "react";
 
 import { useAppSelector } from "../../store/hooks";
-import { Account } from "../Account/Account";
+import { EmployeeAccount } from "../Account/EmployeeAccount";
 import { EmployeeAvatar } from "../Account/EmployeeAvatar/EmployeeAvatar";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";
 import { EmployeeDetails } from "../EmployeeDetails/EmployeeDetails";
@@ -29,7 +29,7 @@ export const Dashboard = () => {
   );
 
   if (!isUserLogin) {
-    return <Account />;
+    return <EmployeeAccount />;
   }
 
   return (

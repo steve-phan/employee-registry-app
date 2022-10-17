@@ -17,7 +17,7 @@ export const EmployeeDetails = () => {
     employeeInfo: state.dashboard.employeeDetails.employeeInfo,
   }));
 
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading } = useQuery(
     ["comment/get-all-comments", employeeInfo._id],
     () =>
       EmployeeAPI.getAllComments({

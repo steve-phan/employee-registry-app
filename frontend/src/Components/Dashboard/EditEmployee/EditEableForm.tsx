@@ -7,7 +7,7 @@ import { EmployeeAPI, IUserInfo } from "../../../apis/API";
 import { toggleEditEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
-import { noWhiteSpace } from "../../Account/SignUp/SignUp.helpers";
+import { noWhiteSpace } from "../../Account/EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EditEableForm = () => {
   const [isSubmitEdit, setIsSubmitEdit] = useState(false);

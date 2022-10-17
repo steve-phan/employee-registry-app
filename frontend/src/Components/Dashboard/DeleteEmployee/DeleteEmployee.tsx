@@ -11,7 +11,7 @@ import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 export const DeleteEmployee = ({ open }: { open: boolean }) => {
   const [isSubmitDelete, setIsSubmitDelete] = useState(false);
   const dispatch = useAppDispatch();
-  const { email, firstName, lastName, userName } = useAppSelector(
+  const { email, firstName, lastName } = useAppSelector(
     (state) => state.dashboard.currentInActionEmployee
   );
   const { data, error } = useQuery(["deleteEmployee", isSubmitDelete], () => {

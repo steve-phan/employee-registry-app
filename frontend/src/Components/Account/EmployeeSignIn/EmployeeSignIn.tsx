@@ -6,9 +6,9 @@ import { useQuery } from "react-query";
 import { EmployeeAPI, ISignInInfo } from "../../../apis/API";
 import { useAppDispatch } from "../../../store/hooks";
 import { setActiveEmployee } from "../../../store/user/user.reducer";
-import { noWhiteSpace } from "../SignUp/SignUp.helpers";
+import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
-export const SignIn: React.FC = () => {
+export const EmployeeSignIn: React.FC = () => {
   const [signInInfo, setSignInInfo] = useState<ISignInInfo>();
   const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
   const dispatch = useAppDispatch();

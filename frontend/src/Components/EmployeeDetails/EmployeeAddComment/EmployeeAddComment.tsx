@@ -16,7 +16,7 @@ export const EmployeeAddComment = () => {
     activeEmployee: state.employee.activeEmployee,
     employeeInfo: state.dashboard.employeeDetails.employeeInfo,
   }));
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading } = useQuery(
     ["comment/add-comment", submitting, value],
     () => {
       if (submitting && value) {
