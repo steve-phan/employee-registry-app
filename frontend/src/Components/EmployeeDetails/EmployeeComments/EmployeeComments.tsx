@@ -1,36 +1,23 @@
-import { memo } from "react";
-import { Comment, List, Tooltip } from "antd";
+import { Comment, List, Skeleton, Tooltip } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { useQuery } from "react-query";
-import { EmployeeAPI, IComment } from "../../../apis/API";
-import { useAppSelector } from "../../../store/hooks";
+import { memo } from "react";
 
+import { IComment } from "../../../apis/API";
+import { useAppSelector } from "../../../store/hooks";
 import { getRandomAvatarURL } from "../../Employees/Employees.helpers";
 
 dayjs.extend(relativeTime);
 
-const EmployeeComments = ({ newcomment }: { newcomment: boolean }) => {
-  const { employeeInfo } = useAppSelector((state) => ({
-    employeeInfo: state.dashboard.employeeDetails.employeeInfo,
-  }));
-  const { data, isLoading } = useQuery(
-    ["comment/get-all-comments", employeeInfo._id, newcomment],
-    () =>
-      EmployeeAPI.getAllComments({
-        employeeId: employeeInfo?._id,
-      })
+const EmployeeComments = () => {
+  const employeeComments = useAppSelector(
+    (state) => state.dashboard.employeeDetails.employeeComments || []
   );
-  const allComment = data?.allComents as { comments: IComment[] };
 
-  if (isLoading) {
-    return <p>Comments is loading....</p>;
+  if (!employeeComments) {
+    return <Skeleton active />;
   }
-
-  if (!allComment || allComment?.comments?.length === 0) {
-    return <p>There is no comments</p>;
-  }
-  const commentList = allComment?.comments?.map((comment: IComment) => {
+  const commentList = employeeComments?.map((comment: IComment) => {
     return {
       author: comment.author,
       avatar: getRandomAvatarURL(comment.authorId),
@@ -38,11 +25,11 @@ const EmployeeComments = ({ newcomment }: { newcomment: boolean }) => {
       datetime: (
         <Tooltip>
           <span>{dayjs(comment.commentAt).fromNow()} </span>
+          {/* <span>{dayjs(comment.commentAt).format("DD-MMM-YYYY")} </span> */}
         </Tooltip>
       ),
     };
   });
-
   return (
     <List
       className="comment-list"

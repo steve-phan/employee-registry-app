@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IUserInfo } from "../../apis/API";
+import { IComment, IUserInfo } from "../../apis/API";
 
 const dashboardSlice = createSlice({
   name: "dashboard",
@@ -15,6 +15,7 @@ const dashboardSlice = createSlice({
     employeeDetails: {
       open: false,
       employeeInfo: undefined as unknown as IUserInfo,
+      employeeComments: [] as IComment[],
     },
   },
   reducers: {
@@ -39,6 +40,9 @@ const dashboardSlice = createSlice({
     setEmployeeInfoPage(state, action) {
       state.employeeDetails.employeeInfo = action.payload;
     },
+    setEmployeeComments(state, action) {
+      state.employeeDetails.employeeComments = action.payload;
+    },
   },
 });
 
@@ -50,6 +54,7 @@ export const {
   toggleEmployeeDetails,
   setCurrentInActionEmployee,
   setEmployeeInfoPage,
+  setEmployeeComments,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

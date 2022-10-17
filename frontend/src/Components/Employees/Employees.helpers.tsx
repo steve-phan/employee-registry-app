@@ -120,7 +120,7 @@ export const getColumnsEmployee = (
 };
 
 export const getRandomAvatarURL = (employeeId: string) => {
-  const avatarId = Number(employeeId.replace(/[^0-9]/g, ""));
+  const avatarId = Number(employeeId?.replace(/[^0-9]/g, ""));
 
   return `https://joeschmoe.io/api/v1/${
     avatarId / 2 === 0 ? "male" : "female"
