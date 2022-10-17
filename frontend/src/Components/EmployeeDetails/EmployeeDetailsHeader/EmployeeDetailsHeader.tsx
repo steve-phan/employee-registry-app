@@ -49,7 +49,6 @@ export const EmployeeDetailsHeader = () => {
           <span> {address.split(" ").slice(-1)[0]}</span>
         </p>
       </Col>
-      <Divider />
     </Row>
   );
 };
