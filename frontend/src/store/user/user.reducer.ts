@@ -11,6 +11,7 @@ const activeEmployeeDefault: Omit<IActiveEmployee, "password"> = {
   lastName: "",
   address: "",
   role: [ROLE.VERKÄUFER],
+  _id: "",
 };
 
 export interface IActiveEmployee extends IUserInfo {

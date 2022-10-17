@@ -27,6 +27,7 @@ describe("EmployeeAPI", () => {
       address: "Berliner str 2, 10101",
       password: "verySecretPass",
       role: [ROLE.VERKÄUFER],
+      _id: "amazingID",
     };
     it("should return a SUCCESS message", async () => {
       mockedAxios.post.mockResolvedValue({

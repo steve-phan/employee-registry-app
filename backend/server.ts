@@ -5,6 +5,7 @@ import cors from "cors";
 import { connectMongoDB } from "./src/config/mogodb";
 import userRouter from "./src/routes/user.route";
 import uploadRouter from "./src/routes/upload.route";
+import commentRouter from "./src/routes/comment.route";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(
 
 app.use("/account", userRouter);
 app.use("/upload", uploadRouter);
+app.use("/comment", commentRouter);
 
 // Handle error
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

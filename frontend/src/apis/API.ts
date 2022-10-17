@@ -13,9 +13,22 @@ export interface IUserInfo extends ISignInInfo {
   firstName: string;
   address: string;
   role: TROLE[];
+  _id: string;
 }
 export interface IFetchData {
   userInfo: IUserInfo;
+}
+
+export interface IComment {
+  authorId: string;
+  author: string;
+  commentAt?: Date;
+  content: string;
+}
+
+export interface IAddCommentProps {
+  employeeId: string;
+  comment: IComment;
 }
 
 const baseURL = `http://localhost:2022`;
@@ -59,6 +72,14 @@ export class EmployeeAPI {
       `${baseURL}/upload/employeefile`,
       formData
     );
+    return response.data;
+  }
+
+  static async addComment({ employeeId, comment }: IAddCommentProps) {
+    const response = await axios.post(`${baseURL}/comment/add-comment`, {
+      employeeId,
+      comment,
+    });
     return response.data;
   }
 }
