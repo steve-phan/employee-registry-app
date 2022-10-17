@@ -34,14 +34,16 @@ export const EditEableForm = () => {
   useEffect(() => {
     if (isSubmitEdit && !isLoading && data) {
       dispatch(setAllEmployees(data?.users));
-      message.success(`edit ${userInfo.userName} successfully.`).then(() => {
-        setIsSubmitEdit(false);
-        dispatch(toggleEditEmployeeModal(false));
-      });
+      message
+        .success(`edit ${userInfo.userName} successfully.`, 0.5)
+        .then(() => {
+          setIsSubmitEdit(false);
+          dispatch(toggleEditEmployeeModal(false));
+        });
     }
 
     if (error) {
-      message.error(`edit ${userInfo.userName} failed.`);
+      message.error(`edit ${userInfo.userName} failed.`, 0.5);
     }
   }, [data, isLoading]);
 

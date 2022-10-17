@@ -72,3 +72,7 @@
 .ant-breadcrumb .dashboard-employee__item {
   cursor: pointer;
 }
+.ant-layout-sider-trigger {
+  position: unset;
+  bottom: unset;
+}

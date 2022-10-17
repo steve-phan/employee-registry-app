@@ -52,11 +52,11 @@ export const SignUp = ({
       }
 
       message
-        .success("register successfully")
+        .success("register successfully", 0.5)
         .then(() => dispatch(toggleAddEmployeeModal(false)));
     }
     if (error) {
-      message.error("register failed");
+      message.error("register failed", 0.5);
       setIsSubmitSignUp(false);
     }
   }, [data, isLoading]);

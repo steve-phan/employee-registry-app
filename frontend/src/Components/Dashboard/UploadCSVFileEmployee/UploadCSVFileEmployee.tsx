@@ -13,7 +13,7 @@ import { useAppDispatch } from "../../../store/hooks";
 
 export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [isSubmituploading, setisSubmitUploading] = useState(false);
+  const [isSubmituploading, setIsSubmitUploading] = useState(false);
   const dispatch = useAppDispatch();
 
   const { data, error, isLoading } = useQuery(
@@ -33,26 +33,25 @@ export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
     if (fileList.length === 0) {
       alert("please select a file to upload");
     } else {
-      setisSubmitUploading(true);
+      setIsSubmitUploading(true);
     }
   };
 
   const uploadDone = () => {
-    setisSubmitUploading(false);
+    setIsSubmitUploading(false);
     setFileList([]);
     dispatch(toggleUploadCSVFILEEMPLOYEEModal(false));
+    console.log("toggle uploadcsv modal");
   };
 
   useEffect(() => {
-    if (isSubmituploading) {
-      if (error) {
-        message.error("upload failed.").then(uploadDone);
-      }
-      if (!isLoading && data) {
-        message.success("upload successfully.").then(uploadDone);
-        dispatch(setAllEmployees(data?.users));
-      }
-      setisSubmitUploading(false);
+    if (error) {
+      message.error("upload failed.", 0.5).then(uploadDone);
+    }
+    if (data) {
+      console.log(" hey message do your job man");
+      message.success("upload successfully.", 0.5).then(uploadDone);
+      dispatch(setAllEmployees(data?.users));
     }
   }, [data, isLoading, isSubmituploading]);
 

@@ -25,14 +25,16 @@ export const DeleteEmployee = ({ open }: { open: boolean }) => {
 
   useEffect(() => {
     if (data) {
-      message.success(`delete ${userName} successfully.`).then(() => {
-        setIsSubmitDelete(false);
-        dispatch(setAllEmployees(data?.users));
-        dispatch(toggleDeleteEmployeeModal(false));
-      });
+      message
+        .success(`delete ${firstName + " " + lastName} successfully.`, 0.5)
+        .then(() => {
+          setIsSubmitDelete(false);
+          dispatch(setAllEmployees(data?.users));
+          dispatch(toggleDeleteEmployeeModal(false));
+        });
     }
     if (error) {
-      message.error(`delete ${userName} failed.`);
+      message.error(`delete ${firstName + " " + lastName} failed.`, 0.5);
     }
   }, [data, dispatch]);
 
