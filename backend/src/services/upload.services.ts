@@ -52,7 +52,7 @@ export class UploadServices {
 
       const uniqueNumber = Math.floor(Math.random() * (10000 + 1));
       const userName =
-        `${Vorname.trim()}-${Nachname.trim()}-${uniqueNumber}}`.toLowerCase();
+        `${Vorname.trim()}-${Nachname.trim()}-${uniqueNumber}`.toLowerCase();
       const email = `employee-${uniqueNumber}@amzing-gmbg.com`;
       const password = bcrypt.hashSync("123456", 10);
 
