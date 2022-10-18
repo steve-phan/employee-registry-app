@@ -41,7 +41,6 @@ export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
     setIsSubmitUploading(false);
     setFileList([]);
     dispatch(toggleUploadCSVFILEEMPLOYEEModal(false));
-    console.log("toggle uploadcsv modal");
   };
 
   useEffect(() => {
@@ -49,7 +48,6 @@ export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
       message.error("upload failed.", 0.5).then(uploadDone);
     }
     if (data) {
-      console.log(" hey message do your job man");
       message.success("upload successfully.", 0.5).then(uploadDone);
       dispatch(setAllEmployees(data?.users));
     }

@@ -3,13 +3,13 @@ import { Button, Checkbox, Form, Input, message, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, ISignInInfo } from "../../../apis/API";
+import { EmployeeAPI, IEmployeeSignInInfo } from "../../../apis/API";
 import { useAppDispatch } from "../../../store/hooks";
 import { setActiveEmployee } from "../../../store/user/user.reducer";
 import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EmployeeSignIn: React.FC = () => {
-  const [signInInfo, setSignInInfo] = useState<ISignInInfo>();
+  const [signInInfo, setSignInInfo] = useState<IEmployeeSignInInfo>();
   const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(

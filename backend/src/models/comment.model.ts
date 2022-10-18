@@ -1,4 +1,3 @@
-// create a `comment` collection, binding with `user` collection by userId
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 

@@ -3,7 +3,7 @@ import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, IUserInfo } from "../../../apis/API";
+import { EmployeeAPI, IEmployeeInfo } from "../../../apis/API";
 import { toggleEditEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setAllEmployees } from "../../../store/user/user.reducer";
@@ -14,7 +14,9 @@ export const EditEableForm = () => {
   const currentInActionEmployee = useAppSelector(
     (state) => state.dashboard.currentInActionEmployee
   );
-  const [userInfo, setUserInfo] = useState<IUserInfo>(currentInActionEmployee);
+  const [userInfo, setUserInfo] = useState<IEmployeeInfo>(
+    currentInActionEmployee
+  );
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(
     ["signUpEmployee", userInfo],
@@ -26,7 +28,7 @@ export const EditEableForm = () => {
   );
   const [form] = Form.useForm();
 
-  const onFinish = (values: IUserInfo) => {
+  const onFinish = (values: IEmployeeInfo) => {
     setIsSubmitEdit(true);
     setUserInfo(values);
   };

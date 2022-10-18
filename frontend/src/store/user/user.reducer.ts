@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IUserInfo } from "../../apis/API";
+import { IEmployeeInfo } from "../../apis/API";
 import { ROLE } from "../../Components/Employees/Employees.helpers";
 
 const activeEmployeeDefault: Omit<IActiveEmployee, "password"> = {
-  isUserLogin: false,
+  isEmployeeLogin: false,
   userName: "",
   email: "",
   firstName: "",
@@ -14,14 +14,14 @@ const activeEmployeeDefault: Omit<IActiveEmployee, "password"> = {
   _id: "",
 };
 
-export interface IActiveEmployee extends IUserInfo {
-  isUserLogin: boolean;
+export interface IActiveEmployee extends IEmployeeInfo {
+  isEmployeeLogin: boolean;
 }
 
 const employeeSlice = createSlice({
   name: "employee",
   initialState: {
-    allEmployees: [] as IUserInfo[],
+    allEmployees: [] as IEmployeeInfo[],
     activeEmployee: activeEmployeeDefault,
   },
   reducers: {
@@ -32,7 +32,7 @@ const employeeSlice = createSlice({
     setActiveEmployee(state, action) {
       state.activeEmployee = {
         ...action.payload,
-        isUserLogin: true,
+        isEmployeeLogin: true,
       };
     },
 

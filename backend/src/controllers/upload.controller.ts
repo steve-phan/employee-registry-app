@@ -12,7 +12,6 @@ export class UploadControler {
         .status(200)
         .json({ message: "success", users: fileContentData });
     } catch (error) {
-      console.log({ error });
       next(error);
     }
   }

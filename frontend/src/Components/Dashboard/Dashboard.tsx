@@ -18,17 +18,17 @@ const { Header, Footer, Sider, Content } = Layout;
 
 export const Dashboard = () => {
   const [collap, setCollop] = useState(false);
-  const { isUserLogin, openEmployeePage, employeeId } = useAppSelector(
+  const { isEmployeeLogin, openEmployeePage, employeeId } = useAppSelector(
     (state) => {
       return {
         employeeId: state.employee.activeEmployee._id,
-        isUserLogin: state.employee.activeEmployee.isUserLogin,
+        isEmployeeLogin: state.employee.activeEmployee.isEmployeeLogin,
         openEmployeePage: state.dashboard.employeeDetails.open,
       };
     }
   );
 
-  if (!isUserLogin) {
+  if (!isEmployeeLogin) {
     return <EmployeeAccount />;
   }
 

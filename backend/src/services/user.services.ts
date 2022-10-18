@@ -3,12 +3,12 @@ import bcrypt from "bcryptjs";
 import User, { ROLE } from "../models/user.model";
 
 type TROLE = keyof typeof ROLE;
-export interface ISignInInfo {
+export interface IEmployeeSignInInfo {
   userName: string;
   password: string;
 }
 
-export interface IUserInfo extends ISignInInfo {
+export interface IEmployeeInfo extends IEmployeeSignInInfo {
   email: string;
   lastName: string;
   firstName: string;
@@ -17,7 +17,7 @@ export interface IUserInfo extends ISignInInfo {
 }
 
 export class UserServices {
-  static async signIn({ signInInfo }: { signInInfo: ISignInInfo }) {
+  static async signIn({ signInInfo }: { signInInfo: IEmployeeSignInInfo }) {
     const user = await User.findOne({ userName: signInInfo.userName });
     if (user && bcrypt.compareSync(signInInfo.password, user.password)) {
       const { password, ...userInfo } = user.toObject();
@@ -30,7 +30,7 @@ export class UserServices {
     // TODO: using jwt library to send token back to client
   }
 
-  static async signUp({ userInfo }: { userInfo: IUserInfo }) {
+  static async signUp({ userInfo }: { userInfo: IEmployeeInfo }) {
     const existUser = await User.findOne({
       $or: [{ userName: userInfo.userName }, { email: userInfo.email }],
     });
@@ -48,7 +48,7 @@ export class UserServices {
     return await this.getAllEmployees();
   }
 
-  static async editEmployee({ userInfo }: { userInfo: IUserInfo }) {
+  static async editEmployee({ userInfo }: { userInfo: IEmployeeInfo }) {
     await User.findOneAndUpdate({ email: userInfo.email }, userInfo);
     return await this.getAllEmployees();
   }

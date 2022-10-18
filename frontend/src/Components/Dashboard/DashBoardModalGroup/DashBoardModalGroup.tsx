@@ -7,14 +7,14 @@ import { UploadCSVFileEmployee } from "../UploadCSVFileEmployee/UploadCSVFileEmp
 
 export const DashBoardModalGroup = () => {
   const {
-    isUserLogin,
+    isEmployeeLogin,
     openAddEmPloyeeModal,
     openUploadCSVFileEmployee,
     openDeleteEmployeeModal,
     openEditEmployeeModal,
   } = useAppSelector((state) => {
     return {
-      isUserLogin: state.employee.activeEmployee.isUserLogin,
+      isEmployeeLogin: state.employee.activeEmployee.isEmployeeLogin,
       openAddEmPloyeeModal: state.dashboard.openModal.ADD_EMPPLOYEE,
       openUploadCSVFileEmployee:
         state.dashboard.openModal.UPLOAD_CSV_FILE_EMPLOYEE,
@@ -24,7 +24,7 @@ export const DashBoardModalGroup = () => {
   });
 
   // We might need this condition to reuse in another component
-  if (!isUserLogin) {
+  if (!isEmployeeLogin) {
     return <EmployeeAccount />;
   }
   return (

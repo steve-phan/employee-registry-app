@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { ROLE } from "../Components/Employees/Employees.helpers";
 
-import { EmployeeAPI, IUserInfo } from "./API";
+import { EmployeeAPI, IEmployeeInfo } from "./API";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -19,7 +19,7 @@ describe("EmployeeAPI", () => {
   });
 
   describe("signUp", () => {
-    const mockUserInfo: IUserInfo = {
+    const mockUserInfo: IEmployeeInfo = {
       userName: "Teddy",
       firstName: "VU NAM",
       lastName: "PHAN",

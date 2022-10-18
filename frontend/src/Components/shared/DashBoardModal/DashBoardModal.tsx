@@ -27,7 +27,6 @@ export const DashBoardModal = ({
     dispatch(toggleModal(false));
   };
   const handleOk = () => {
-    console.log("aa");
     onOk();
   };
 

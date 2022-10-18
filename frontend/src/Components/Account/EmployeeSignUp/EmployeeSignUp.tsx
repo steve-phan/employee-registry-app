@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
-import { EmployeeAPI, IUserInfo } from "../../../apis/API";
+import { EmployeeAPI, IEmployeeInfo } from "../../../apis/API";
 import { useAppDispatch } from "../../../store/hooks";
 import {
   setActiveEmployee,
@@ -23,7 +23,7 @@ export const EmployeeSignUp = ({
 }: {
   type?: TSignUpBtn;
 }) => {
-  const [userInfo, setUserInfo] = useState<IUserInfo>();
+  const [userInfo, setUserInfo] = useState<IEmployeeInfo>();
   const dispatch = useAppDispatch();
   const [isSubmitSignUp, setIsSubmitSignUp] = useState(false);
   const { data, error, isLoading } = useQuery(
@@ -38,7 +38,7 @@ export const EmployeeSignUp = ({
   );
   const [form] = Form.useForm();
 
-  const onFinish = (values: IUserInfo) => {
+  const onFinish = (values: IEmployeeInfo) => {
     setIsSubmitSignUp(true);
     setUserInfo(values);
   };

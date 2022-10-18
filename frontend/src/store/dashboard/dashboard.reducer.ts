@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IComment, IUserInfo } from "../../apis/API";
+import { IComment, IEmployeeInfo } from "../../apis/API";
 
 const dashboardSlice = createSlice({
   name: "dashboard",
@@ -11,10 +11,10 @@ const dashboardSlice = createSlice({
       DELETE_EMPLOYEE: false,
       EDIT_EMPLOYEE: false,
     },
-    currentInActionEmployee: undefined as unknown as IUserInfo,
+    currentInActionEmployee: undefined as unknown as IEmployeeInfo,
     employeeDetails: {
       open: false,
-      employeeInfo: undefined as unknown as IUserInfo,
+      employeeInfo: undefined as unknown as IEmployeeInfo,
       employeeComments: [] as IComment[],
     },
   },

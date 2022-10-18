@@ -2,12 +2,12 @@ import axios from "axios";
 
 import { TROLE } from "../Components/Employees/Employees.helpers";
 
-export interface ISignInInfo {
+export interface IEmployeeSignInInfo {
   userName: string;
   password: string;
 }
 
-export interface IUserInfo extends ISignInInfo {
+export interface IEmployeeInfo extends IEmployeeSignInInfo {
   email: string;
   lastName: string;
   firstName: string;
@@ -16,7 +16,7 @@ export interface IUserInfo extends ISignInInfo {
   _id: string;
 }
 export interface IFetchData {
-  userInfo: IUserInfo;
+  userInfo: IEmployeeInfo;
 }
 
 export interface IComment {
@@ -39,7 +39,7 @@ export class EmployeeAPI {
     return response.data;
   }
 
-  static async signIn({ signInInfo }: { signInInfo: ISignInInfo }) {
+  static async signIn({ signInInfo }: { signInInfo: IEmployeeSignInInfo }) {
     const response = await axios.post(`${baseURL}/account/signin`, {
       signInInfo,
     });

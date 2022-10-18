@@ -2,7 +2,7 @@ import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { AnyAction, Dispatch } from "redux";
 
-import { IUserInfo } from "../../apis/API";
+import { IEmployeeInfo } from "../../apis/API";
 import {
   setCurrentInActionEmployee,
   setEmployeeInfoPage,
@@ -38,12 +38,11 @@ export const getActionColumn = (dispatch: Dispatch<AnyAction>) => ({
   dataIndex: "action",
   key: "action",
   ellipsis: true,
-  render: (_: any, employee: IUserInfo) => (
+  render: (_: any, employee: IEmployeeInfo) => (
     <Space size="middle">
       <span
         className="action_button"
         onClick={() => {
-          console.log({ employee });
           dispatch(toggleEditEmployeeModal(true));
           dispatch(setCurrentInActionEmployee(employee));
         }}
