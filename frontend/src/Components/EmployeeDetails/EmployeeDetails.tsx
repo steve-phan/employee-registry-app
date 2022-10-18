@@ -1,6 +1,6 @@
 import { Skeleton } from "antd";
 import { useEffect } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 
 import { EmployeeAPI } from "../../apis/API";
 import { setEmployeeComments } from "../../store/dashboard/dashboard.reducer";
@@ -13,12 +13,13 @@ import { EmployeeDetailsHeader } from "./EmployeeDetailsHeader/EmployeeDetailsHe
 
 export const EmployeeDetails = () => {
   const dispatch = useAppDispatch();
-  const { employeeInfo } = useAppSelector((state) => ({
+  const { employeeInfo, employeeComments } = useAppSelector((state) => ({
     employeeInfo: state.dashboard.employeeDetails.employeeInfo,
+    employeeComments: state.dashboard.employeeDetails.employeeComments,
   }));
 
   const { data, isLoading } = useQuery(
-    ["comment/get-all-comments", employeeInfo._id],
+    ["comment/get-all-comments", employeeInfo._id, employeeComments],
     () =>
       EmployeeAPI.getAllComments({
         employeeId: employeeInfo._id,

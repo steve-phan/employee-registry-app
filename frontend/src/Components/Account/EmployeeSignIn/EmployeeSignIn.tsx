@@ -9,20 +9,21 @@ import { setActiveEmployee } from "../../../store/user/user.reducer";
 import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EmployeeSignIn: React.FC = () => {
-  const [signInInfo, setSignInInfo] = useState<IEmployeeSignInInfo>();
+  const [employeeSignInInfo, setEmployeeSignInInfo] =
+    useState<IEmployeeSignInInfo>();
   const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(
-    ["signInEmployee", signInInfo, isSubmitSignIn],
+    ["signInEmployee", employeeSignInInfo, isSubmitSignIn],
     () => {
-      if (isSubmitSignIn && signInInfo) {
-        return EmployeeAPI.signIn({ signInInfo });
+      if (isSubmitSignIn && employeeSignInInfo) {
+        return EmployeeAPI.signIn({ employeeSignInInfo });
       }
     }
   );
   const onFinish = (values: any) => {
     setIsSubmitSignIn(true);
-    setSignInInfo(values);
+    setEmployeeSignInInfo(values);
   };
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export const EmployeeSignIn: React.FC = () => {
     if (error) {
       message.error("SignIn failed").then(() => setIsSubmitSignIn(false));
     }
-  }, [data, isLoading, dispatch, signInInfo]);
+  }, [data, isLoading, dispatch, employeeSignInInfo]);
   return (
     <Form
       name="normal_login"

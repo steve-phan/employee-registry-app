@@ -14,15 +14,15 @@ export const EditEableForm = () => {
   const currentInActionEmployee = useAppSelector(
     (state) => state.dashboard.currentInActionEmployee
   );
-  const [userInfo, setUserInfo] = useState<IEmployeeInfo>(
+  const [employeeSignUpInfo, setEmployeeSignUpInfo] = useState<IEmployeeInfo>(
     currentInActionEmployee
   );
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(
-    ["signUpEmployee", userInfo],
+    ["signUpEmployee", employeeSignUpInfo, isSubmitEdit],
     () => {
-      if (isSubmitEdit && userInfo) {
-        return EmployeeAPI.editEmployee({ userInfo });
+      if (isSubmitEdit && employeeSignUpInfo) {
+        return EmployeeAPI.editEmployee({ employeeSignUpInfo });
       }
     }
   );
@@ -30,14 +30,14 @@ export const EditEableForm = () => {
 
   const onFinish = (values: IEmployeeInfo) => {
     setIsSubmitEdit(true);
-    setUserInfo(values);
+    setEmployeeSignUpInfo(values);
   };
 
   useEffect(() => {
     if (isSubmitEdit && !isLoading && data) {
       dispatch(setAllEmployees(data?.users));
       message
-        .success(`edit ${userInfo.userName} successfully.`, 0.5)
+        .success(`edit ${employeeSignUpInfo.userName} successfully.`, 0.5)
         .then(() => {
           setIsSubmitEdit(false);
           dispatch(toggleEditEmployeeModal(false));
@@ -45,7 +45,7 @@ export const EditEableForm = () => {
     }
 
     if (error) {
-      message.error(`edit ${userInfo.userName} failed.`, 0.5);
+      message.error(`edit ${employeeSignUpInfo.userName} failed.`, 0.5);
     }
   }, [data, isLoading]);
 

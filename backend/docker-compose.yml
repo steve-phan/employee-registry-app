@@ -1,0 +1,21 @@
+version: "3.1"
+services:
+  mongo:
+    container_name: mongodb
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
+    links:
+      - backend
+  backend:
+    container_name: backend
+    image: employee/backend
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    ports:
+      - "${PORT}:${PORT}"

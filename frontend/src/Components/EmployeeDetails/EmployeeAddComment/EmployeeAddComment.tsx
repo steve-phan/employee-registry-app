@@ -45,7 +45,7 @@ export const EmployeeAddComment = () => {
   };
 
   useEffect(() => {
-    if (submitting && data) {
+    if (submitting && data?.allComents.comments) {
       dispatch(setEmployeeComments(data.allComents.comments));
       setSubmitting(false);
       setValue("");

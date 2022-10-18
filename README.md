@@ -12,13 +12,21 @@
 
    - create `.env` file in the root of `backend` folder
    - Variable: `PORT=2022`
-   - Variable: `MONGO_URI=mongodb://localhost:27017/amazing-app`
-   - Run [MongoDB Compass](https://www.mongodb.com/products/compass) in localhost
+   - Variable: `MONGO_URI=mongodb://localhost:27017/amazing-app` with [MongoDB Compass](https://www.mongodb.com/products/compass) run in localhost
+   - Variable: `MONGO_URI=mongodb://mongodb:27017/amazing-app` with [Docker Destop](https://www.docker.com/) installed in localhost
 
 2. #### Backend
+
+   _**With Docker:**_
+
+   - `docker compose up --build`
+
+   _**With MongoDB Compass:**_
+
    - `cd backend` change directory to backend folder
    - `yarn` to install dependencies
    - `yarn start` to serve backend
+
 3. #### Frontend
    - `cd frontend` change directory to frontend folder
    - `yarn` to install dependencies
@@ -31,7 +39,11 @@
     - Employee must create an account and login to app
     - Employee can view another employee pages and leave comment
 
-2.  With `CHEF` access: (_add `CHEF` role of employee in `MongoDB` to acctive `CHEF` access_ )
+2.  With `CHEF` access:
+
+    **With Docker:** Register userName with `root` | `admin` | `chef` to have CHEF Role
+
+    **With MongoDB compass:** _add `CHEF` role of employee in `MongoDB` to acctive `CHEF` access_
 
     - All features above
     - Edit and Delete employee account

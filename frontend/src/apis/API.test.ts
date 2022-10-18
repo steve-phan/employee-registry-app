@@ -33,7 +33,9 @@ describe("EmployeeAPI", () => {
       mockedAxios.post.mockResolvedValue({
         data: { message: "SUCCESS" },
       });
-      const response = await EmployeeAPI.signUp({ userInfo: mockUserInfo });
+      const response = await EmployeeAPI.signUp({
+        employeeSignUpInfo: mockUserInfo,
+      });
       expect(response.message).toBe("SUCCESS");
     });
   });

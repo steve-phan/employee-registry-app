@@ -15,7 +15,7 @@ export const Employees = () => {
       roles: state.employee.activeEmployee.role,
     };
   });
-  const { data, isLoading } = useQuery("getAllEmployees", () =>
+  const { data, isLoading } = useQuery(["getAllEmployees", employees], () =>
     EmployeeAPI.getAllEmployees()
   );
 

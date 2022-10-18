@@ -23,16 +23,20 @@ export const EmployeeSignUp = ({
 }: {
   type?: TSignUpBtn;
 }) => {
-  const [userInfo, setUserInfo] = useState<IEmployeeInfo>();
+  const [employeeSignUpInfo, setEmployeeSignUpInfo] = useState<IEmployeeInfo>();
   const dispatch = useAppDispatch();
   const [isSubmitSignUp, setIsSubmitSignUp] = useState(false);
   const { data, error, isLoading } = useQuery(
     ["signUpEmployee", isSubmitSignUp],
     () => {
-      if (isSubmitSignUp && userInfo) {
+      if (isSubmitSignUp && employeeSignUpInfo) {
         const password =
-          type === SignUpType.ADD_EMPLOYEE ? "123456" : userInfo.password;
-        return EmployeeAPI.signUp({ userInfo: { ...userInfo, password } });
+          type === SignUpType.ADD_EMPLOYEE
+            ? "123456"
+            : employeeSignUpInfo.password;
+        return EmployeeAPI.signUp({
+          employeeSignUpInfo: { ...employeeSignUpInfo, password },
+        });
       }
     }
   );
@@ -40,13 +44,23 @@ export const EmployeeSignUp = ({
 
   const onFinish = (values: IEmployeeInfo) => {
     setIsSubmitSignUp(true);
-    setUserInfo(values);
+    setEmployeeSignUpInfo(values);
   };
 
   useEffect(() => {
-    if (!isLoading && data) {
+    if (!isLoading && data && employeeSignUpInfo) {
       if (type === SignUpType.SELF_REGISTRATION) {
-        dispatch(setActiveEmployee({ ...userInfo, role: [ROLE.VERKÄUFER] }));
+        // The temporary solution for running MongoDB in Docker.
+        // For real projects, we can assign, and edit ROLE by GUI MongoDB
+        const isCHEF: boolean = ["chef", "admin", "root"].includes(
+          employeeSignUpInfo.userName.toLowerCase()
+        );
+        dispatch(
+          setActiveEmployee({
+            ...employeeSignUpInfo,
+            role: [isCHEF ? ROLE.CHEF : ROLE.VERKÄUFER],
+          })
+        );
       } else {
         dispatch(setAllEmployees(data?.users));
       }

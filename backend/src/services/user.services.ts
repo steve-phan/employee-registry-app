@@ -17,9 +17,16 @@ export interface IEmployeeInfo extends IEmployeeSignInInfo {
 }
 
 export class UserServices {
-  static async signIn({ signInInfo }: { signInInfo: IEmployeeSignInInfo }) {
-    const user = await User.findOne({ userName: signInInfo.userName });
-    if (user && bcrypt.compareSync(signInInfo.password, user.password)) {
+  static async signIn({
+    employeeSignInInfo,
+  }: {
+    employeeSignInInfo: IEmployeeSignInInfo;
+  }) {
+    const user = await User.findOne({ userName: employeeSignInInfo.userName });
+    if (
+      user &&
+      bcrypt.compareSync(employeeSignInInfo.password, user.password)
+    ) {
       const { password, ...userInfo } = user.toObject();
       return {
         ...userInfo,
@@ -30,15 +37,31 @@ export class UserServices {
     // TODO: using jwt library to send token back to client
   }
 
-  static async signUp({ userInfo }: { userInfo: IEmployeeInfo }) {
+  static async signUp({
+    employeeSignUpInfo,
+  }: {
+    employeeSignUpInfo: IEmployeeInfo;
+  }) {
     const existUser = await User.findOne({
-      $or: [{ userName: userInfo.userName }, { email: userInfo.email }],
+      $or: [
+        { userName: employeeSignUpInfo.userName },
+        { email: employeeSignUpInfo.email },
+      ],
     });
     if (existUser) {
-      throw `UserName: ${userInfo.userName} or Email: ${userInfo.email} is already taken`;
+      throw `UserName: ${employeeSignUpInfo.userName} or Email: ${employeeSignUpInfo.email} is already taken`;
     }
-    const user = new User({ ...userInfo, role: [ROLE.VERKÄUFER] });
-    user.password = bcrypt.hashSync(userInfo.password, 10);
+
+    // The temporary solution for running MongoDB in Docker.
+    // For real projects, we can assign, and edit ROLE by GUI MongoDB
+    const isCHEF: boolean = ["chef", "admin", "root"].includes(
+      employeeSignUpInfo.userName.toLowerCase()
+    );
+    const user = new User({
+      ...employeeSignUpInfo,
+      role: [isCHEF ? ROLE.CHEF : ROLE.VERKÄUFER],
+    });
+    user.password = bcrypt.hashSync(employeeSignUpInfo.password, 10);
     await user.save();
 
     return await this.getAllEmployees();
@@ -48,8 +71,15 @@ export class UserServices {
     return await this.getAllEmployees();
   }
 
-  static async editEmployee({ userInfo }: { userInfo: IEmployeeInfo }) {
-    await User.findOneAndUpdate({ email: userInfo.email }, userInfo);
+  static async editEmployee({
+    employeeSignUpInfo,
+  }: {
+    employeeSignUpInfo: IEmployeeInfo;
+  }) {
+    await User.findOneAndUpdate(
+      { email: employeeSignUpInfo.email },
+      employeeSignUpInfo
+    );
     return await this.getAllEmployees();
   }
 

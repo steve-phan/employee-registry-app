@@ -16,7 +16,7 @@ export interface IEmployeeInfo extends IEmployeeSignInInfo {
   _id: string;
 }
 export interface IFetchData {
-  userInfo: IEmployeeInfo;
+  employeeSignUpInfo: IEmployeeInfo;
 }
 
 export interface IComment {
@@ -39,16 +39,20 @@ export class EmployeeAPI {
     return response.data;
   }
 
-  static async signIn({ signInInfo }: { signInInfo: IEmployeeSignInInfo }) {
+  static async signIn({
+    employeeSignInInfo,
+  }: {
+    employeeSignInInfo: IEmployeeSignInInfo;
+  }) {
     const response = await axios.post(`${baseURL}/account/signin`, {
-      signInInfo,
+      employeeSignInInfo,
     });
     return response.data;
   }
 
-  static async signUp({ userInfo }: IFetchData) {
+  static async signUp({ employeeSignUpInfo }: IFetchData) {
     const response = await axios.post(`${baseURL}/account/signup`, {
-      userInfo,
+      employeeSignUpInfo,
     });
     return response.data;
   }
@@ -60,9 +64,9 @@ export class EmployeeAPI {
     return response.data;
   }
 
-  static async editEmployee({ userInfo }: IFetchData) {
+  static async editEmployee({ employeeSignUpInfo }: IFetchData) {
     const response = await axios.post(`${baseURL}/account/edit-employee`, {
-      userInfo,
+      employeeSignUpInfo,
     });
     return response.data;
   }
