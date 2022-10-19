@@ -41,9 +41,9 @@
 
 2.  With `CHEF` access:
 
-    **With Docker:** Register userName with `root` | `admin` | `chef` to have CHEF Role
+    **With Docker:** Using MongoDB admin interface edit the ROLE of the user to `CHEF`
 
-    **With MongoDB compass:** _add `CHEF` role of employee in `MongoDB` to acctive `CHEF` access_
+    **With MongoDB compass:** Using MongoDB Compass edit the ROLE of the user to `CHEF`
 
     - All features above
     - Edit and Delete employee account

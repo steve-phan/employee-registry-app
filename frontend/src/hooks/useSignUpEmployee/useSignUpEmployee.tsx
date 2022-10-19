@@ -43,15 +43,10 @@ export const useSignUpEmployee = ({ type }: { type: TSignUpBtn }) => {
   useEffect(() => {
     if (!isLoading && data && employeeSignUpInfo) {
       if (type === SignUpType.SELF_REGISTRATION) {
-        // The temporary solution for running MongoDB in Docker.
-        // For real projects, we can assign, and edit ROLE by GUI MongoDB
-        const isCHEF: boolean = ["chef", "admin", "root"].includes(
-          employeeSignUpInfo.userName.toLowerCase()
-        );
         dispatch(
           setActiveEmployee({
             ...employeeSignUpInfo,
-            role: [isCHEF ? ROLE.CHEF : ROLE.VERKÄUFER],
+            role: [ROLE.VERKÄUFER],
           })
         );
       } else {

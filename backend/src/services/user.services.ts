@@ -51,15 +51,9 @@ export class UserServices {
     if (existUser) {
       throw `UserName: ${employeeSignUpInfo.userName} or Email: ${employeeSignUpInfo.email} is already taken`;
     }
-
-    // The temporary solution for running MongoDB in Docker.
-    // For real projects, we can assign, and edit ROLE by GUI MongoDB
-    const isCHEF: boolean = ["chef", "admin", "root"].includes(
-      employeeSignUpInfo.userName.toLowerCase()
-    );
     const user = new User({
       ...employeeSignUpInfo,
-      role: [isCHEF ? ROLE.CHEF : ROLE.VERKÄUFER],
+      role: [ROLE.VERKÄUFER],
     });
     user.password = bcrypt.hashSync(employeeSignUpInfo.password, 10);
     await user.save();
