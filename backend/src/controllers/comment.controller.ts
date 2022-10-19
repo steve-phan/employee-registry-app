@@ -7,7 +7,9 @@ export class CommentControler {
     try {
       const { employeeId } = req.body;
       const allComments = await CommentServices.getAllComments({ employeeId });
-      res.status(200).json({ allComments, message: "SUCCESS" });
+      res
+        .status(200)
+        .json({ allComments: allComments || [], message: "SUCCESS" });
     } catch (error) {
       next(error);
     }
