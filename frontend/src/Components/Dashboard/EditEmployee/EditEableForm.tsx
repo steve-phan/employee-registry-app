@@ -1,53 +1,17 @@
 import { Button, Form, Input } from "antd";
-import { message } from "antd";
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 
-import { EmployeeAPI, IEmployeeInfo } from "../../../apis/API";
-import { toggleEditEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setAllEmployees } from "../../../store/user/user.reducer";
+import { IEmployeeInfo } from "../../../apis/API";
+import { useEditEmployee } from "../../../hooks";
 import { noWhiteSpace } from "../../Account/EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EditEableForm = () => {
-  const [isSubmitEdit, setIsSubmitEdit] = useState(false);
-  const currentInActionEmployee = useAppSelector(
-    (state) => state.dashboard.currentInActionEmployee
-  );
-  const [employeeSignUpInfo, setEmployeeSignUpInfo] = useState<IEmployeeInfo>(
-    currentInActionEmployee
-  );
-  const dispatch = useAppDispatch();
-  const { data, error, isLoading } = useQuery(
-    ["signUpEmployee", employeeSignUpInfo, isSubmitEdit],
-    () => {
-      if (isSubmitEdit && employeeSignUpInfo) {
-        return EmployeeAPI.editEmployee({ employeeSignUpInfo });
-      }
-    }
-  );
+  const { onSubmitEditEmployee, isLoading, currentInActionEmployee } =
+    useEditEmployee();
   const [form] = Form.useForm();
 
   const onFinish = (values: IEmployeeInfo) => {
-    setIsSubmitEdit(true);
-    setEmployeeSignUpInfo(values);
+    onSubmitEditEmployee(values);
   };
-
-  useEffect(() => {
-    if (isSubmitEdit && !isLoading && data) {
-      dispatch(setAllEmployees(data?.users));
-      message
-        .success(`edit ${employeeSignUpInfo.userName} successfully.`, 0.5)
-        .then(() => {
-          setIsSubmitEdit(false);
-          dispatch(toggleEditEmployeeModal(false));
-        });
-    }
-
-    if (error) {
-      message.error(`edit ${employeeSignUpInfo.userName} failed.`, 0.5);
-    }
-  }, [data, isLoading]);
 
   return (
     <>
@@ -114,7 +78,7 @@ export const EditEableForm = () => {
         </Form.Item>
         <Form.Item>
           <Button
-            // loading={isLoading}
+            loading={isLoading}
             type="primary"
             htmlType="submit"
             style={{ width: "100%" }}

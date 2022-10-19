@@ -22,6 +22,7 @@ export const useGetAllEmployees = () => {
       dispatch(setAllEmployees(data?.users));
     }
   }, [data, dispatch]);
+
   return {
     employees,
     roles,
