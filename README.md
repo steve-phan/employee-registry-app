@@ -41,14 +41,19 @@
 
 2.  With `CHEF` access:
 
-    **With Docker:** Using MongoDB admin interface edit the ROLE of the user to `CHEF`
+- **With Docker:** Using MongoDB admin interface
 
-    **With MongoDB compass:** Using MongoDB Compass edit the ROLE of the user to `CHEF`
+      - open http://localhost:8081/
+      - username: chef
+      - password: 123456
+      - edit the ROLE of the user to `CHEF`<br>
 
-    - All features above
-    - Edit and Delete employee account
-    - Create an account for another employee
-    - Import employees over a CSV file
+- **With MongoDB Compass:** Using MongoDB Compass edit the ROLE of the user to `CHEF`
+
+  - All features above
+  - Edit and Delete employee account
+  - Create an account for another employee
+  - Import employees over a CSV file<br>
 
 ### Testing (TODO: bump test coverage)
 
