@@ -1,39 +1,20 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, message, Typography } from "antd";
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { Button, Checkbox, Form, Input, Typography } from "antd";
 
-import { EmployeeAPI, IEmployeeSignInInfo } from "../../../apis/API";
-import { useAppDispatch } from "../../../store/hooks";
-import { setActiveEmployee } from "../../../store/user/user.reducer";
+import { useSignInEmployee } from "../../../hooks";
 import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EmployeeSignIn: React.FC = () => {
-  const [employeeSignInInfo, setEmployeeSignInInfo] =
-    useState<IEmployeeSignInInfo>();
-  const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
-  const dispatch = useAppDispatch();
-  const { data, error, isLoading } = useQuery(
-    ["signInEmployee", employeeSignInInfo, isSubmitSignIn],
-    () => {
-      if (isSubmitSignIn && employeeSignInInfo) {
-        return EmployeeAPI.signIn({ employeeSignInInfo });
-      }
-    }
-  );
-  const onFinish = (values: any) => {
-    setIsSubmitSignIn(true);
-    setEmployeeSignInInfo(values);
+  const { onSubmitActiveEmployee, isLoading, error } = useSignInEmployee();
+
+  const onFinish = (values: {
+    password: string;
+    remember: boolean;
+    userName: string;
+  }) => {
+    onSubmitActiveEmployee(values);
   };
 
-  useEffect(() => {
-    if (!isLoading && data) {
-      dispatch(setActiveEmployee({ ...data.user }));
-    }
-    if (error) {
-      message.error("SignIn failed").then(() => setIsSubmitSignIn(false));
-    }
-  }, [data, isLoading, dispatch, employeeSignInInfo]);
   return (
     <Form
       name="normal_login"

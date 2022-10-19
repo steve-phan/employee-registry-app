@@ -15,7 +15,7 @@ import {
   setAllEmployees,
 } from "../../store/user/user.reducer";
 
-export const useActiveEmployee = ({ type }: { type: TSignUpBtn }) => {
+export const useSignUpEmployee = ({ type }: { type: TSignUpBtn }) => {
   const dispatch = useAppDispatch();
   const [isSubmitSignUp, setIsSubmitSignUp] = useState(false);
   const [employeeSignUpInfo, setEmployeeSignUpInfo] = useState<IEmployeeInfo>();

@@ -2,7 +2,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography } from "antd";
 
 import { IEmployeeInfo } from "../../../apis/API";
-import { useActiveEmployee } from "../../../hooks";
+import { useSignUpEmployee } from "../../../hooks";
 import {
   noWhiteSpace,
   SignUpBtnText,
@@ -15,7 +15,7 @@ export const EmployeeSignUp = ({
 }: {
   type?: TSignUpBtn;
 }) => {
-  const { error, isLoading, onSubmitActiveEmployee } = useActiveEmployee({
+  const { error, isLoading, onSubmitActiveEmployee } = useSignUpEmployee({
     type,
   });
   const [form] = Form.useForm();
