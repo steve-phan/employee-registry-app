@@ -24,4 +24,4 @@ yarn-error.log*
 
 # mongodb
 
-backend/data
+backend/database
