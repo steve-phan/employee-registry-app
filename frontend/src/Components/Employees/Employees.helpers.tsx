@@ -126,3 +126,14 @@ export const getRandomAvatarURL = (employeeId: string) => {
     avatarId / 2 === 0 ? "male" : "female"
   }/${avatarId}`;
 };
+
+export const modifyEmployee = (employees: IEmployeeInfo[]) =>
+  [...employees]
+    .sort((a, b) => a.firstName.charCodeAt(0) - b.firstName.charCodeAt(0))
+    .map((employee, index) => {
+      return {
+        ...employee,
+        name: employee,
+        key: `${index}_${employee.email}`,
+      };
+    });
