@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ROLE } from "../Components/Employees/Employees.helpers";
+import { ROLE } from "src/Components/Employees/Employees.helpers";
 
 import { EmployeeAPI, IEmployeeInfo } from "./API";
 

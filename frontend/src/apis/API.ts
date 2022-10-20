@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { TROLE } from "../Components/Employees/Employees.helpers";
+import { TROLE } from "src/Components/Employees/Employees.helpers";
 
 export interface IEmployeeSignInInfo {
   userName: string;

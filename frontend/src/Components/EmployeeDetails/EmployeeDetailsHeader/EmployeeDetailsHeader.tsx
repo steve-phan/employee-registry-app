@@ -1,8 +1,9 @@
 import { Col, Row, Tag } from "antd";
 
+import { EmployeeColor } from "src/Components/Employees/Employees.helpers";
+
 import { useAppSelector } from "../../../store/hooks";
 import { EmployeeAvatar } from "../../Account/EmployeeAvatar/EmployeeAvatar";
-import { EmployeeColor } from "../../Employees/Employees.helpers";
 
 export const EmployeeDetailsHeader = () => {
   const { firstName, lastName, role, address, _id } = useAppSelector(

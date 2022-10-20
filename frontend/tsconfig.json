@@ -14,7 +14,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "rootDir": ".",
+    "baseUrl": "."
+    // "paths": {
+    //   "apis/*": ["apis/*"],
+    //   "Components/*": ["Components/*"],
+    //   "hooks/*": ["hooks/*"],
+    //   "store/*": ["store/*"],
+    //   "test/*": ["test/*"]
+    // }
   },
   "include": ["src", "babel.config.js"],
   "exclude": ["node_modules"]
