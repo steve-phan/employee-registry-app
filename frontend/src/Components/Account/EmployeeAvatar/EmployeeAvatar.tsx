@@ -1,7 +1,8 @@
 import { Avatar } from "antd";
 import { useMemo } from "react";
 
-import { getRandomAvatarURL } from "../../Employees/Employees.helpers";
+import { getRandomAvatarURL } from "src/Components/Employees/Employees.helpers";
+
 import { employeeAvatarStyles } from "./EmployeeAvatar.styles";
 
 export const EmployeeAvatar = ({ employeeId }: { employeeId: string }) => {

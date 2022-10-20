@@ -2,18 +2,18 @@ import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, IEmployeeInfo } from "../../apis/API";
+import { EmployeeAPI, IEmployeeInfo } from "src/apis/API";
 import {
   SignUpType,
   TSignUpBtn,
-} from "../../Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
-import { ROLE } from "../../Components/Employees/Employees.helpers";
-import { toggleAddEmployeeModal } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch } from "../../store/hooks";
+} from "src/Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
+import { ROLE } from "src/Components/Employees/Employees.helpers";
 import {
   setActiveEmployee,
   setAllEmployees,
-} from "../../store/user/user.reducer";
+  toggleAddEmployeeModal,
+} from "src/store";
+import { useAppDispatch } from "src/store/hooks";
 
 export const useSignUpEmployee = ({ type }: { type: TSignUpBtn }) => {
   const dispatch = useAppDispatch();

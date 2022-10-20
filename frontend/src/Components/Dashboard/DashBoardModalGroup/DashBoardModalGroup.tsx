@@ -1,5 +1,6 @@
-import { useAppSelector } from "../../../store/hooks";
-import { EmployeeAccount } from "../../Account/EmployeeAccount";
+import { EmployeeAccount } from "src/Components/Account/EmployeeAccount";
+import { useAppSelector } from "src/store/hooks";
+
 import { AddEmployee } from "../AddEmployee/AddEmployee";
 import { DeleteEmployee } from "../DeleteEmployee/DeleteEmployee";
 import { EditEmployee } from "../EditEmployee/EditEmployee";

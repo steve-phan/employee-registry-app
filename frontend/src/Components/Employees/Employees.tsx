@@ -1,7 +1,8 @@
 import { Empty, Spin, Table } from "antd";
 
-import { useGetAllEmployees } from "../../hooks";
-import { useAppDispatch } from "../../store/hooks";
+import { useGetAllEmployees } from "src/hooks";
+import { useAppDispatch } from "src/store/hooks";
+
 import {
   getActionColumn,
   getColumnsEmployee,

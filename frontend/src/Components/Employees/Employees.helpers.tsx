@@ -2,14 +2,14 @@ import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { AnyAction, Dispatch } from "redux";
 
-import { IEmployeeInfo } from "../../apis/API";
+import { IEmployeeInfo } from "src/apis/API";
 import {
   setCurrentInActionEmployee,
   setEmployeeInfoPage,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
   toggleEmployeeDetails,
-} from "../../store/dashboard/dashboard.reducer";
+} from "src/store";
 
 export const ROLE = {
   VERKÄUFER: "VERKÄUFER",
