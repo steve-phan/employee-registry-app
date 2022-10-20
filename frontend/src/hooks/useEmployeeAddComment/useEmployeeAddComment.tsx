@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../apis/API";
-import { setEmployeeComments } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { EmployeeAPI } from "src/apis/API";
+import { setEmployeeComments } from "src/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 export const useEmployeeAddComment = () => {
   const [value, setValue] = useState("");

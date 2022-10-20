@@ -1,7 +1,6 @@
-import React from "react";
+import { DashBoardModal } from "src/Components/shared/DashBoardModal/DashBoardModal";
+import { toggleEditEmployeeModal } from "src/store";
 
-import { toggleEditEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
 import { EditEableForm } from "./EditEableForm";
 
 export const EditEmployee = ({ open }: { open: boolean }) => {

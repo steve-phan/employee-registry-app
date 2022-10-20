@@ -2,10 +2,9 @@ import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, IEmployeeInfo } from "../../apis/API";
-import { toggleEditEmployeeModal } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setAllEmployees } from "../../store/user/user.reducer";
+import { EmployeeAPI, IEmployeeInfo } from "src/apis/API";
+import { setAllEmployees, toggleEditEmployeeModal } from "src/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 export const useEditEmployee = () => {
   const [isSubmitEdit, setIsSubmitEdit] = useState(false);

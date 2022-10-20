@@ -1,9 +1,7 @@
-import React from "react";
-
-import { toggleAddEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { EmployeeSignUp } from "../../Account/EmployeeSignUp/EmployeeSignUp";
-import { SignUpType } from "../../Account/EmployeeSignUp/EmployeeSignUp.helpers";
-import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
+import { EmployeeSignUp } from "src/Components/Account/EmployeeSignUp/EmployeeSignUp";
+import { SignUpType } from "src/Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
+import { DashBoardModal } from "src/Components/shared/DashBoardModal/DashBoardModal";
+import { toggleAddEmployeeModal } from "src/store";
 
 export const AddEmployee = ({ open }: { open: boolean }) => {
   return (

@@ -1,22 +1,19 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-
-import employeeReducer from "./user/user.reducer";
-import dashboardReducer from "./dashboard/dashboard.reducer";
-
-const store = configureStore({
-  reducer: {
-    employee: employeeReducer,
-    dashboard: dashboardReducer,
-  },
-});
+import store from "./store";
+export type { AppDispatch, AppThunk, RootState } from "./store";
+export {
+  toggleAddEmployeeModal,
+  toggleUploadCSVFILEEMPLOYEEModal,
+  toggleDeleteEmployeeModal,
+  toggleEditEmployeeModal,
+  toggleEmployeeDetails,
+  setCurrentInActionEmployee,
+  setEmployeeInfoPage,
+  setEmployeeComments,
+} from "./dashboard/dashboard.reducer";
+export {
+  setAllEmployees,
+  setActiveEmployee,
+  setSingOutActiveEmployee,
+} from "./user/user.reducer";
 
 export default store;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;

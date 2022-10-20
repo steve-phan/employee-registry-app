@@ -1,9 +1,9 @@
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 
-import { useUploadCSVFileEmployee } from "../../../hooks";
-import { toggleUploadCSVFILEEMPLOYEEModal } from "../../../store/dashboard/dashboard.reducer";
-import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
+import { DashBoardModal } from "src/Components/shared/DashBoardModal/DashBoardModal";
+import { useUploadCSVFileEmployee } from "src/hooks";
+import { toggleUploadCSVFILEEMPLOYEEModal } from "src/store";
 
 export const UploadCSVFileEmployee = ({ open }: { open: boolean }) => {
   const { handleUpload, upLoadprops } = useUploadCSVFileEmployee();

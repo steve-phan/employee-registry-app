@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../apis/API";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setAllEmployees } from "../../store/user/user.reducer";
+import { EmployeeAPI } from "src/apis/API";
+import { setAllEmployees } from "src/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 export const useGetAllEmployees = () => {
   const dispatch = useAppDispatch();
