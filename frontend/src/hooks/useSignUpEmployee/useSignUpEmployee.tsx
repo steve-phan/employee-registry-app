@@ -1,13 +1,13 @@
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { ROLE } from "src/@types";
 
 import { EmployeeAPI, IEmployeeInfo } from "src/apis/API";
 import {
   SignUpType,
   TSignUpBtn,
 } from "src/Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
-import { ROLE } from "src/Components/Employees/Employees.helpers";
 import {
   setActiveEmployee,
   setAllEmployees,

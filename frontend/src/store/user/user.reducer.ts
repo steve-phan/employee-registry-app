@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { ROLE } from "src/@types/Employee.types";
 import { IEmployeeInfo } from "src/apis/API";
-import { ROLE } from "src/Components/Employees/Employees.helpers";
 
 const activeEmployeeDefault: Omit<IActiveEmployee, "password"> = {
   isEmployeeLogin: false,

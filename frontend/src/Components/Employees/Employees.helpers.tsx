@@ -2,6 +2,7 @@ import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { AnyAction, Dispatch } from "redux";
 
+import { IEmployee, ROLE } from "src/@types";
 import { IEmployeeInfo } from "src/apis/API";
 import {
   setCurrentInActionEmployee,
@@ -10,22 +11,6 @@ import {
   toggleEditEmployeeModal,
   toggleEmployeeDetails,
 } from "src/store";
-
-export const ROLE = {
-  VERKÄUFER: "VERKÄUFER",
-  EINKÄUFER: "EINKÄUFER",
-  CHEF: "CHEF",
-} as const;
-
-export type TROLE = keyof typeof ROLE;
-
-export interface IEmployee {
-  name: string;
-  email: string;
-  address: string;
-  role: TROLE[];
-  action?: string;
-}
 
 export const EmployeeColor = {
   [ROLE.EINKÄUFER]: "geekblue",

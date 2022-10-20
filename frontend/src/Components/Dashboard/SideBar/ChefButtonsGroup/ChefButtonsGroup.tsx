@@ -2,12 +2,12 @@ import { Row } from "antd";
 import { EditOutlined, CloudUploadOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "src/store/hooks";
-import { ROLE } from "src/Components/Employees/Employees.helpers";
 import { ButtonWithIcon } from "src/Components/shared/ButtonWithIcon/ButtonWithIcon";
 import {
   toggleAddEmployeeModal,
   toggleUploadCSVFILEEMPLOYEEModal,
 } from "src/store";
+import { ROLE } from "src/@types";
 
 export const ChefButtonsGroup = () => {
   const dispatch = useAppDispatch();
