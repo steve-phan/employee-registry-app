@@ -21,7 +21,6 @@ export const useDeleteEmployee = () => {
   const handleDeleteEmployee = () => {
     setIsSubmitDelete(true);
   };
-
   useEffect(() => {
     if (data) {
       message
