@@ -2,10 +2,17 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { render } from "@testing-library/react";
+import { cleanup, render, act } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
-  const { baseElement } = render(<App />);
-  expect(baseElement).toBeTruthy();
+describe("App", () => {
+  afterEach(cleanup);
+  test("renders app correctly", async () => {
+    expect.assertions(1);
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    await act(async () => {
+      const { baseElement } = render(<App />);
+      expect(baseElement).toBeTruthy();
+    });
+  });
 });

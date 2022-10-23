@@ -1,17 +1,15 @@
 import { message } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI, IEmployeeSignInInfo } from "../../apis/API";
-import { useAppDispatch } from "../../store/hooks";
-import { setActiveEmployee } from "../../store/user/user.reducer";
+import { EmployeeAPI, IEmployeeSignInInfo } from "src/apis/API";
+import { setActiveEmployee } from "src/store";
+import { useAppDispatch } from "src/store/hooks";
 
 export const useSignInEmployee = () => {
   const [employeeSignInInfo, setEmployeeSignInInfo] =
     useState<IEmployeeSignInInfo>();
-  // const { error, isLoading, onSubmitActiveEmployee } = useActiveEmployee({
-  //   type,
-  // });
+
   const [isSubmitSignIn, setIsSubmitSignIn] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useQuery(

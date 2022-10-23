@@ -2,10 +2,9 @@ import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../apis/API";
-import { toggleDeleteEmployeeModal } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setAllEmployees } from "../../store/user/user.reducer";
+import { EmployeeAPI } from "src/apis/API";
+import { setAllEmployees, toggleDeleteEmployeeModal } from "src/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 export const useDeleteEmployee = () => {
   const [isSubmitDelete, setIsSubmitDelete] = useState(false);
@@ -21,7 +20,6 @@ export const useDeleteEmployee = () => {
   const handleDeleteEmployee = () => {
     setIsSubmitDelete(true);
   };
-
   useEffect(() => {
     if (data) {
       message

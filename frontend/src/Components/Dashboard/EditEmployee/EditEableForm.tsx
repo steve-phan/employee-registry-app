@@ -1,8 +1,8 @@
 import { Button, Form, Input } from "antd";
 
-import { IEmployeeInfo } from "../../../apis/API";
-import { useEditEmployee } from "../../../hooks";
-import { noWhiteSpace } from "../../Account/EmployeeSignUp/EmployeeSignUp.helpers";
+import { IEmployeeInfo } from "src/apis/API";
+import { noWhiteSpace } from "src/Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
+import { useEditEmployee } from "src/hooks";
 
 export const EditEableForm = () => {
   const { onSubmitEditEmployee, isLoading, currentInActionEmployee } =

@@ -1,12 +1,13 @@
 import { Empty, Spin, Table } from "antd";
+import { ROLE } from "src/@types";
 
-import { useGetAllEmployees } from "../../hooks";
-import { useAppDispatch } from "../../store/hooks";
+import { useGetAllEmployees } from "src/hooks";
+import { useAppDispatch } from "src/store/hooks";
+
 import {
   getActionColumn,
   getColumnsEmployee,
   modifyEmployee,
-  ROLE,
 } from "./Employees.helpers";
 
 export const Employees = () => {

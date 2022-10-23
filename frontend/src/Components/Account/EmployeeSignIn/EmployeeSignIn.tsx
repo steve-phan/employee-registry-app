@@ -1,10 +1,11 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 
-import { useSignInEmployee } from "../../../hooks";
+import { useSignInEmployee } from "src/hooks";
+
 import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
-export const EmployeeSignIn: React.FC = () => {
+export const EmployeeSignIn = () => {
   const { onSubmitActiveEmployee, isLoading, error } = useSignInEmployee();
 
   const onFinish = (values: {
@@ -71,7 +72,7 @@ export const EmployeeSignIn: React.FC = () => {
         {/* // eslint-disable-next-line react/jsx-no-undef */}
         {/* @ts-ignore */}
         {error && (
-          <Typography.Text type="danger">
+          <Typography.Text type="danger" data-testid="signin-error-test-id">
             {/* @ts-ignore */}
             {error?.response?.data?.error}
           </Typography.Text>

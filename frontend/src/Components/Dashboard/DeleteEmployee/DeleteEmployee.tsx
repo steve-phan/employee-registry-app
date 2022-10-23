@@ -1,6 +1,6 @@
-import { useDeleteEmployee } from "../../../hooks";
-import { toggleDeleteEmployeeModal } from "../../../store/dashboard/dashboard.reducer";
-import { DashBoardModal } from "../../shared/DashBoardModal/DashBoardModal";
+import { DashBoardModal } from "src/Components/shared/DashBoardModal/DashBoardModal";
+import { useDeleteEmployee } from "src/hooks";
+import { toggleDeleteEmployeeModal } from "src/store";
 
 export const DeleteEmployee = ({ open }: { open: boolean }) => {
   const { handleDeleteEmployee, employeeFullname } = useDeleteEmployee();
