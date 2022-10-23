@@ -1,8 +1,8 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Breadcrumb } from "antd";
 
-import { toggleEmployeeDetails } from "../../../store/dashboard/dashboard.reducer";
-import { useAppDispatch } from "../../../store/hooks";
+import { toggleEmployeeDetails } from "src/store";
+import { useAppDispatch } from "src/store/hooks";
 
 export const EmployeeDetailsBreadcrumb = () => {
   const dispatch = useAppDispatch();

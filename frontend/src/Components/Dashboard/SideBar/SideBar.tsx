@@ -1,9 +1,10 @@
 import { LoginOutlined } from "@ant-design/icons";
 import { Row, Divider } from "antd";
 
-import { useAppDispatch } from "../../../store/hooks";
-import { setSingOutActiveEmployee } from "../../../store/user/user.reducer";
-import { ButtonWithIcon } from "../../shared/ButtonWithIcon/ButtonWithIcon";
+import { ButtonWithIcon } from "src/Components/shared/ButtonWithIcon/ButtonWithIcon";
+import { setSingOutActiveEmployee } from "src/store";
+import { useAppDispatch } from "src/store/hooks";
+
 import { ChefButtonsGroup } from "./ChefButtonsGroup/ChefButtonsGroup";
 import { containerGroupSideBarStyles } from "./SideBar.styles";
 import { SideBarHeader } from "./SideBarHeader/SideBarHeader";

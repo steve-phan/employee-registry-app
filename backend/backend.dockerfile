@@ -1,13 +1,15 @@
 FROM node:latest as base
 
-WORKDIR /backend
+RUN mkdir -p /app
 
-COPY package.json yarn.lock ./
+WORKDIR /app
+
+COPY backend/package.json backend/yarn.lock ./
 
 RUN rm -rf node_modules && yarn install --frozen-lockfile && yarn cache clean
 
-COPY . .
+COPY backend/ .
 
-CMD ["yarn", "nodemon"]
+CMD ["yarn", "start"]
 
 EXPOSE 2022

@@ -1,8 +1,7 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { Modal } from "antd";
-import React from "react";
 
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch } from "src/store/hooks";
 
 export interface IDashBoardModalProps {
   title: string;

@@ -1,13 +1,11 @@
 import { Row } from "antd";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { ButtonWithIcon } from "src/Components/shared/ButtonWithIcon/ButtonWithIcon";
+import { setEmployeeInfoPage, toggleEmployeeDetails } from "src/store";
+
 import { containerGroupSideBarStyles } from "../SideBar.styles";
-import { ButtonWithIcon } from "../../../shared/ButtonWithIcon/ButtonWithIcon";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import {
-  setEmployeeInfoPage,
-  toggleEmployeeDetails,
-} from "../../../../store/dashboard/dashboard.reducer";
 
 export const SideBarHeader = () => {
   const dispatch = useAppDispatch();

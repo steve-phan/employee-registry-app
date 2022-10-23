@@ -3,10 +3,9 @@ import { RcFile, UploadProps } from "antd/lib/upload";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../apis/API";
-import { toggleUploadCSVFILEEMPLOYEEModal } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch } from "../../store/hooks";
-import { setAllEmployees } from "../../store/user/user.reducer";
+import { EmployeeAPI } from "src/apis/API";
+import { setAllEmployees, toggleUploadCSVFILEEMPLOYEEModal } from "src/store";
+import { useAppDispatch } from "src/store/hooks";
 
 export const useUploadCSVFileEmployee = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);

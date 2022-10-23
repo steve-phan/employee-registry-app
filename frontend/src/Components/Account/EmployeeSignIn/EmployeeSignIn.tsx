@@ -1,7 +1,8 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Typography } from "antd";
 
-import { useSignInEmployee } from "../../../hooks";
+import { useSignInEmployee } from "src/hooks";
+
 import { noWhiteSpace } from "../EmployeeSignUp/EmployeeSignUp.helpers";
 
 export const EmployeeSignIn = () => {

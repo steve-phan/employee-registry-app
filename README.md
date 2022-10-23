@@ -6,31 +6,14 @@
 - Database: [MongoDB](https://www.mongodb.com/)
 - Frameworks: [React](https://reactjs.org/), [Mongoose](https://mongoosejs.com/), [react-query](https://tanstack.com/query/v4), [Redux](https://redux.js.org/), [Ant Design](https://ant.design/), [Express.js](https://expressjs.com/)
 
-### Get started (Open 2 terminals)
+### Get started
 
-1. #### Database
-
-   - create `.env` file in the root of `backend` folder
-   - Variable: `PORT=2022`
-   - Variable: `MONGO_URI=mongodb://localhost:27017/amazing-app` with [MongoDB Compass](https://www.mongodb.com/products/compass) run in localhost
-   - Variable: `MONGO_URI=mongodb://mongodb:27017/amazing-app` with [Docker Destop](https://www.docker.com/) installed in localhost
-
-2. #### Backend
-
-   _**With Docker:**_
-
-   - `docker compose up --build`
-
-   _**With MongoDB Compass:**_
-
-   - `cd backend` change directory to backend folder
-   - `yarn` to install dependencies
-   - `yarn start` to serve backend
-
-3. #### Frontend
-   - `cd frontend` change directory to frontend folder
-   - `yarn` to install dependencies
-   - `yarn start` to serve frontend
+1. #### to build image for frontend :
+   `docker build --file=frontend/frontend.dockerfile -t amz-frontend .`
+2. #### to build image for backend :
+   `docker build --file=backend/backend.dockerfile -t amz-backend .`
+3. #### to run whole app
+   `docker compose -f docker-compose.yml up`
 
 ### Features
 
@@ -41,14 +24,19 @@
 
 2.  With `CHEF` access:
 
-    **With Docker:** Register userName with `root` | `admin` | `chef` to have CHEF Role
+- **With Docker:** Using MongoDB admin interface
 
-    **With MongoDB compass:** _add `CHEF` role of employee in `MongoDB` to acctive `CHEF` access_
+      - open http://localhost:8081/
+      - username: chef
+      - password: 123456
+      - edit the ROLE of the user to `CHEF`<br>
 
-    - All features above
-    - Edit and Delete employee account
-    - Create an account for another employee
-    - Import employees over a CSV file
+- **With MongoDB Compass:** Using MongoDB Compass edit the ROLE of the user to `CHEF`
+
+  - All features above
+  - Edit and Delete employee account
+  - Create an account for another employee
+  - Import employees over a CSV file<br>
 
 ### Testing (TODO: bump test coverage)
 

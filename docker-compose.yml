@@ -12,8 +12,9 @@ services:
       - ./database/db:/data/db
       - ./database/dev.archieve:/Database/dev.archieve
       - ./database/production:/Database/production
+      - ./uploads:/Database/uploads
     links:
-      - backend
+      - amz-backend
   mongo-express:
     image: mongo-express
     container_name: mongo-express
@@ -28,14 +29,27 @@ services:
     links:
       - mongo
     restart: unless-stopped
-  
-  backend:
-    image: employee/backend
-    container_name: backend
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: base
+
+  amz-frontend:
+    image: amz-frontend:latest
+    environment:
+      - PORT=3000
     ports:
-      - "${PORT}:${PORT}"        
+      - "3000:3000"  
+  amz-backend:
+    image: amz-backend:latest
+    environment:
+      - PORT=2022
+    ports:
+      - "2022:2022"   
+  
+  # backend:
+  #   image: employee/backend
+  #   container_name: backend
+  #   restart: always
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: base
+  #   ports:
+  #     - "${PORT}:${PORT}"        

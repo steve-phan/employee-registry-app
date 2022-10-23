@@ -1,19 +1,19 @@
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { ROLE } from "src/@types";
 
-import { EmployeeAPI, IEmployeeInfo } from "../../apis/API";
+import { EmployeeAPI, IEmployeeInfo } from "src/apis/API";
 import {
   SignUpType,
   TSignUpBtn,
-} from "../../Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
-import { ROLE } from "../../Components/Employees/Employees.helpers";
-import { toggleAddEmployeeModal } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch } from "../../store/hooks";
+} from "src/Components/Account/EmployeeSignUp/EmployeeSignUp.helpers";
 import {
   setActiveEmployee,
   setAllEmployees,
-} from "../../store/user/user.reducer";
+  toggleAddEmployeeModal,
+} from "src/store";
+import { useAppDispatch } from "src/store/hooks";
 
 export const useSignUpEmployee = ({ type }: { type: TSignUpBtn }) => {
   const dispatch = useAppDispatch();
@@ -43,15 +43,10 @@ export const useSignUpEmployee = ({ type }: { type: TSignUpBtn }) => {
   useEffect(() => {
     if (!isLoading && data && employeeSignUpInfo) {
       if (type === SignUpType.SELF_REGISTRATION) {
-        // The temporary solution for running MongoDB in Docker.
-        // For real projects, we can assign, and edit ROLE by GUI MongoDB
-        const isCHEF: boolean = ["chef", "admin", "root"].includes(
-          employeeSignUpInfo.userName.toLowerCase()
-        );
         dispatch(
           setActiveEmployee({
             ...employeeSignUpInfo,
-            role: [isCHEF ? ROLE.CHEF : ROLE.VERKÄUFER],
+            role: [ROLE.VERKÄUFER],
           })
         );
       } else {
