@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IComment, IEmployeeInfo } from "../../apis/API";
+import { IComment, IEmployeeInfo } from "src/apis/API";
 
 const dashboardSlice = createSlice({
   name: "dashboard",

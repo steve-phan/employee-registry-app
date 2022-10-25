@@ -1,10 +1,10 @@
 import { Avatar, Comment } from "antd";
 import { useMemo } from "react";
 
-import { useEmployeeAddComment } from "../../../hooks";
-import { useAppSelector } from "../../../store/hooks";
-import { getRandomAvatarURL } from "../../Employees/Employees.helpers";
-import { Editor } from "../../shared/Editor/Editor";
+import { getRandomAvatarURL } from "src/Components/Employees/Employees.helpers";
+import { Editor } from "src/Components/shared/Editor/Editor";
+import { useEmployeeAddComment } from "src/hooks";
+import { useAppSelector } from "src/store/hooks";
 
 export const EmployeeAddComment = () => {
   const { activeEmployee } = useAppSelector((state) => ({

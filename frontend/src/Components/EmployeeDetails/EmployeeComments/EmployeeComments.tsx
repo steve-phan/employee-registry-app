@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { memo } from "react";
 
-import { IComment } from "../../../apis/API";
-import { useAppSelector } from "../../../store/hooks";
-import { getRandomAvatarURL } from "../../Employees/Employees.helpers";
+import { IComment } from "src/apis/API";
+import { getRandomAvatarURL } from "src/Components/Employees/Employees.helpers";
+import { useAppSelector } from "src/store/hooks";
 
 dayjs.extend(relativeTime);
 

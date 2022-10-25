@@ -1,7 +1,8 @@
 import { Layout, Typography } from "antd";
 import { useState } from "react";
 
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "src/store/hooks";
+
 import { EmployeeAccount } from "../Account/EmployeeAccount";
 import { EmployeeAvatar } from "../Account/EmployeeAvatar/EmployeeAvatar";
 import { DashBoardModalGroup } from "./DashBoardModalGroup/DashBoardModalGroup";

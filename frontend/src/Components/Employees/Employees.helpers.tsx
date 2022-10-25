@@ -2,30 +2,15 @@ import { Space, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { AnyAction, Dispatch } from "redux";
 
-import { IEmployeeInfo } from "../../apis/API";
+import { IEmployee, ROLE } from "src/@types";
+import { IEmployeeInfo } from "src/apis/API";
 import {
   setCurrentInActionEmployee,
   setEmployeeInfoPage,
   toggleDeleteEmployeeModal,
   toggleEditEmployeeModal,
   toggleEmployeeDetails,
-} from "../../store/dashboard/dashboard.reducer";
-
-export const ROLE = {
-  VERKÄUFER: "VERKÄUFER",
-  EINKÄUFER: "EINKÄUFER",
-  CHEF: "CHEF",
-} as const;
-
-export type TROLE = keyof typeof ROLE;
-
-export interface IEmployee {
-  name: string;
-  email: string;
-  address: string;
-  role: TROLE[];
-  action?: string;
-}
+} from "src/store";
 
 export const EmployeeColor = {
   [ROLE.EINKÄUFER]: "geekblue",

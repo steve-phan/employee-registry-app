@@ -1,10 +1,11 @@
 import { Skeleton } from "antd";
 import { useEffect } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery } from "react-query";
 
-import { EmployeeAPI } from "../../apis/API";
-import { setEmployeeComments } from "../../store/dashboard/dashboard.reducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { EmployeeAPI } from "src/apis/API";
+import { setEmployeeComments } from "src/store";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+
 import { EmployeeAddComment } from "./EmployeeAddComment/EmployeeAddComment";
 import EmployeeComments from "./EmployeeComments/EmployeeComments";
 import { wrapCommentStyles } from "./EmployeeDetails.styles";

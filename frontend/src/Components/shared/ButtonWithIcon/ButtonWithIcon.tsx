@@ -18,8 +18,6 @@ export const ButtonWithIcon = ({
       style={{
         textAlign: "left",
         marginBottom: "8px",
-        // background: "blue",
-        // color: "red",
         border: "none",
       }}
       block

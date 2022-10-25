@@ -1,13 +1,13 @@
 import { Row } from "antd";
 import { EditOutlined, CloudUploadOutlined } from "@ant-design/icons";
 
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { ButtonWithIcon } from "src/Components/shared/ButtonWithIcon/ButtonWithIcon";
 import {
   toggleAddEmployeeModal,
   toggleUploadCSVFILEEMPLOYEEModal,
-} from "../../../../store/dashboard/dashboard.reducer";
-import { ROLE } from "../../../Employees/Employees.helpers";
-import { ButtonWithIcon } from "../../../shared/ButtonWithIcon/ButtonWithIcon";
+} from "src/store";
+import { ROLE } from "src/@types";
 
 export const ChefButtonsGroup = () => {
   const dispatch = useAppDispatch();
